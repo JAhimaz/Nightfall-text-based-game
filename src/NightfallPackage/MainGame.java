@@ -1,6 +1,7 @@
 package NightfallPackage;
 
 import java.util.Random;
+import java.lang.Math; 
 import java.util.Scanner;
 
 public class MainGame {
@@ -14,12 +15,12 @@ public class MainGame {
 	static String stringInput;
 	
 	//CURRENTPULLEDSTATS
-	static int day;
+	static int day, scavengingDays, endScavenging;
 	//SETTLEMENT DETAILS
 	static String settlementName;
 	static int settlers,
 			   defense,
-			   scavengers,
+			   scavengers, scavengerswGuns, scavengerswoGuns,
 			   health;		
 	//PLAYERSTATE
 	static boolean playerDead = false,
@@ -31,13 +32,18 @@ public class MainGame {
 		Misc.EntryMessage();
 		DefaultStats();
 		//Do While Loop To End Game
-		for(day = 1; day >= 1 && !playerDead; day++) {
-			
+		for(day = 1; day >= 1 && !playerDead; day++) {	
+			ScavengingCall();
 			DayStartCall();
 			if(day > 3) {
-				System.out.println("A EVENT HAS STRUCK");
-				//Random Events have a 75% chance of happening
-				//After 3 Days Random Events Start
+				double eventRand = (Math.random() * 100); 
+				if(eventRand <= 75) {
+					System.out.println("\nAn Event Has Occured!");
+					randomEvent();
+					if(playerDead) {
+						break;
+					}
+				}
 			}
 			while(!dayOver) {
 				dailyChoice = DayChoice();
@@ -47,9 +53,10 @@ public class MainGame {
 						break;
 				}
 			}
-			System.out.println("Day " + day + " Has Come To An End");
-			
+			System.out.println("\nDay " + day + " Has Come To An End");	
 		}
+		
+		System.out.println("\n\nYOU HAVE MADE IT TO THE END GAME AFTER " + day + " DAYS SURVIVED");
 	}
 	
 	public static void DefaultStats() {
@@ -58,7 +65,11 @@ public class MainGame {
 		settlementName = input.nextLine();
 		
 		settlers = rand.nextInt((7 - 5) + 1) + 5; defense = 50; health = 100;
-		playerStats.setMetal(20); playerStats.setWood(20); playerStats.setWeapons(5); playerStats.setFood(20); playerStats.setWater(20);
+		playerStats.setMetal(rand.nextInt((40 - 20) + 1) + 20); 
+		playerStats.setWood(rand.nextInt((40 - 20) + 1) + 20); 
+		playerStats.setWeapons(rand.nextInt((7 - 4) + 1) + 4); 
+		playerStats.setFood(rand.nextInt((60 - 40) + 1) + 20);
+		playerStats.setWater(rand.nextInt((60 - 40) + 1) + 20);
 	}
 	
 	public static int DayChoice() {
@@ -94,9 +105,10 @@ public class MainGame {
 		Thread.sleep(1000);
 		System.out.println("SETTLEMENT DETAILS:");
 		System.out.println("Name: " + settlementName);
-		System.out.print("Settlers: " + settlers);
 		if(isScavenging) {
-			System.out.print(" + (" + scavengers + ") Scavenging\n");
+			System.out.print("Settlers: " + settlers + " (" + scavengers + ") Scavenging\n");
+		}else {
+			System.out.println("Settlers: " + settlers);
 		}
 		System.out.println("Defense: " + defense);
 		System.out.println("Health: " + health);
@@ -127,9 +139,22 @@ public class MainGame {
 			return true;
 		}
 		if(choice == 4) {
+			dayOver = true;
 			return true;
 		}
 		return false;
+	}
+	
+	//SCAVENGING
+	
+	public static void ScavengingCall() throws InterruptedException{
+		if(isScavenging && scavengingDays == endScavenging) {
+			ReturnScavengers();
+			Thread.sleep(3000);
+		}
+		else if(isScavenging) {
+			scavengingDays++;
+		}
 	}
 	
 	public static void SendScavengers() {
@@ -156,13 +181,82 @@ public class MainGame {
 				successfulChoice = true;
 			}else {
 				System.out.println("\nYou Have Sent Out " + choice + " Scavengers!\n");
-				//SETUP WEAPON SYSTEM
+				if(playerStats.getWeapons() < choice) {
+					int currentWeapons = playerStats.getWeapons();
+					playerStats.setWeapons(playerStats.getWeapons() - playerStats.getWeapons());
+					System.out.println((choice-currentWeapons) + " Scavengers Dont Have Weapons To Defend Themselves.");
+					scavengerswGuns = currentWeapons;
+					scavengerswoGuns = choice-currentWeapons;
+				}else {
+					playerStats.setWeapons(playerStats.getWeapons() - choice);
+					scavengerswGuns = choice;
+					scavengerswoGuns = 0;
+				}
 				settlers -= choice;
 				scavengers = choice;
 				isScavenging = true;
+				scavengingDays = 0;
+				endScavenging = rand.nextInt((5 - 1) + 1) + 1;
 				successfulChoice = true;
 				dayOver = true;
 			}
 		}while(!successfulChoice);
+	}
+	
+	public static void ReturnScavengers() {
+		isScavenging = false; settlers += scavengers; playerStats.setWeapons(playerStats.getWeapons() + scavengers); scavengers = 0;scavengerswGuns = 0; scavengerswoGuns = 0;
+		int metalFound = (scavengingDays * (rand.nextInt((5 - 1) + 1) + 1));
+		int woodFound = (scavengingDays * (rand.nextInt((5 - 1) + 1) + 1));
+		int foodFound = (scavengingDays * (rand.nextInt((5 - 1) + 1) + 1));
+		int waterFound = (scavengingDays * (rand.nextInt((5 - 1) + 1) + 1));
+		System.out.println("\nYour Scavengers Have Returned With The Following");
+		System.out.println("Metal: " + metalFound);
+		System.out.println("Wood: " + woodFound);
+		System.out.println("Food: " + foodFound);
+		System.out.println("Water: " + waterFound);
+		playerStats.setMetal(playerStats.getMetal() + metalFound); playerStats.setWood(playerStats.getWood() + woodFound); 
+		playerStats.setFood(playerStats.getFood() + foodFound); playerStats.setWater(playerStats.getWater() + waterFound);
+		scavengingDays = 0;
+		endScavenging = 0;
+	}
+	
+	//EVENTS
+	
+	public static void randomEvent() throws InterruptedException {
+		//CONTINUE FROM HERE
+		System.out.println("=====================================\n");
+		double event = (Math.random() * 100); 
+		if(event <= 100) {
+			System.out.println("It Begins To Rain! Your Settlement Gathers Water.");
+			int addedWater = (rand.nextInt((30 - 5) + 5) + 1);
+			System.out.println("Your Settlement Gathered " + addedWater + " Units of Water");
+			playerStats.setWater(playerStats.getWater() + addedWater);
+			Thread.sleep(1000);
+		}if(event <= 90) {
+			System.out.println("Your Settlement Is Under Attack!");
+			Thread.sleep(1000);
+			playerDead = true;
+		}if(event <= 70) {
+
+		}if(event <= 50) {
+			
+		}if(event <= 40) {
+			
+		}if(event <= 30) {
+			
+		}if(event <= 20) {
+			
+		}if(event <= 5) {
+			System.out.println("Your Settlers Gaze Upon The Horizon and Notice A Dark Egg Dropping From The Sky...");
+			Thread.sleep(1000);
+			System.out.println("The Sound Whizzing Through The Air, Its A Nuclear Bomb");
+			Thread.sleep(1000);
+			System.out.println("At This Point Theres No Hope, Your Settlement is Within the Blast Radius");
+			Thread.sleep(1000);
+			System.out.println("Your Settlers Say Their Final GoodBye As The Explosion Lights Up The Sky");
+			Thread.sleep(1000);
+			System.out.println("The Blistering Impact Of The Sound Levels Your Whole Settlement.");
+			playerDead = true;
+		}
 	}
 }
