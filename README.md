@@ -1,2 +1,3 @@
 # NIGHTFALL
-## The Text Based Apocalyptic Survival
+#### About NightFall
+The Text Based Apocalyptic Survival
