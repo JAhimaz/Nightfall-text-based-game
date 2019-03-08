@@ -17,8 +17,8 @@ Random Events:
 - 15% New Settlers join your settlement!
 - 0.1% Nuclear Bomb.
 
-~~Scavenging:
-- The player is able to send out scavengers as long as he has the required amount of settlers (min. 2 in settlement at any given time).
+~~Scavenging:~~
+~~- The player is able to send out scavengers as long as he has the required amount of settlers (min. 2 in settlement at any given time).~~
 ~~- Scavengers take a random amount of days (1-5) out in the wasteland and come back with food, water, metal, wood.~~
 
 Settler System:
