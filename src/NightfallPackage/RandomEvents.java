@@ -3,7 +3,6 @@ package NightfallPackage;
 import java.util.Random;
 import java.lang.Math; 
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class RandomEvents {
 	static Random rand = new Random();
