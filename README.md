@@ -1,5 +1,5 @@
 # NIGHTFALL
-## Development 1.0.2
+## Development Build 1.0.2
 #### About NightFall
 Nightfall takes the apocalypse survival genre back to gamings roots by using text based choices to decide the faith of the settlement with RNG being a heavy factor.
 
