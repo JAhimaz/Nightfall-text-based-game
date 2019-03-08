@@ -11,7 +11,9 @@ Day to Day System:
 
 Random Events:
 - 10% Rain (Acid/Normal) - Acid rain affects the water units while normal rain adds to it.
+- 5% Attacked by invaders. Damaging your defenses and possibly killing some settlers. (Although a reward of weapons and possibly surrendered invaders join your settlement).
 - 5% Natural Disaster Systems - Dust Storms, Earthquakes have chances of affecting your settlers and defenses (along with your settlement health).
+- 15% New Settlers join your settlement!
 - 0.1% Nuclear Bomb.
 
 Scavenging:
