@@ -1,9 +1,9 @@
 # NIGHTFALL
-## Development Build 1.0.2
+## Development Build 1.0.3
 #### About NightFall
 Nightfall takes the apocalypse survival genre back to gamings roots by using text based choices to decide the faith of the settlement with RNG being a heavy factor.
 
-#### Current Features (Development 1.0.2)
+#### Current Features (Development 1.0.3)
 Current complete features that are working (Does not mean finished).
 Day to Day System:
 - Days pass by after a turn/action has been made. such as sending out scavengers, going to the market, fortifying your base or just skipping in general.
@@ -20,14 +20,15 @@ Scavenging:
 - The player is able to send out scavengers as long as he has the required amount of settlers (min. 2 in settlement at any given time).
 - Scavengers take a random amount of days (1-5) out in the wasteland and come back with food, water, metal, wood.
 
-#### Currently Working On Features (Development 1.0.3)
-Features soon to be released and are in the works.
 Settler System:
 - Giving each individual settler their own stats/gender/name and perks.
 - Choice to send out certain settlers to the wasteland depending on their skills.
 
 Removal of overall health:
 - As each settler will have their own health, I've chosen to remove the health of the overall settlement and instead keep it just with defenses.
+
+#### Currently Working On Features (Development 1.0.4)
+Features soon to be released and are in the works.
 
 Addition of building structures:
 - Renaming "Rebuild Settlement" to "Settlement Management" allows the player to build structures (That require a certain amount of days depending on structure and keeps those settlers busy (Working Category).
@@ -52,6 +53,7 @@ Future port to Unity?
 The game is currently being worked on by:
 - Joey Nelson
 - Joshua Ahimaz
+- Darren Lim
 
 Do note that any mention of percentage is equivalent to chance of such given happening.
 A Patchnotes will be created once we leave development version.
