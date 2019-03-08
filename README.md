@@ -5,6 +5,7 @@ Nightfall takes the apocalypse survival genre back to gamings roots by using tex
 
 #### Current Features (Development 1.0.3)
 Current complete features that are working (Does not mean finished).
+
 Day to Day System:
 - Days pass by after a turn/action has been made. such as sending out scavengers, going to the market, fortifying your base or just skipping in general.
 - Different Seasons affect the gameplay, amount of water/food your settlers need.
