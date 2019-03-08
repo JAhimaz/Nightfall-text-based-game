@@ -11,14 +11,14 @@ public class MainGame {
 	static Scanner input = new Scanner(System.in);
 	public final static PlayerStats playerStats = new PlayerStats();
 	public final static SettlementStats settlementStats = new SettlementStats();
-	static ArrayList<Settler> settlers = new ArrayList<Settler>();
-	static ArrayList<Integer> settlementItems = new ArrayList<Integer>();
+	public static ArrayList<Settler> settlers = new ArrayList<Settler>();
+	public static ArrayList<Settler> scavengers = new ArrayList<Settler>();
+	public static ArrayList<Settler> builders = new ArrayList<Settler>();
+	public static ArrayList<Integer> settlementItems = new ArrayList<Integer>();
 	
 	//USERINPUT
 	static int numberInput, dailyChoice;
 	static String stringInput;
-	
-
 	
 	public static void GameBoard() throws InterruptedException {
 		Misc.EntryMessage();

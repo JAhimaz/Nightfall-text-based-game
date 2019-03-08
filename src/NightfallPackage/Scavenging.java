@@ -6,8 +6,7 @@ import java.util.Scanner;
 public class Scavenging {
 	static Random rand = new Random();
 	static Scanner input = new Scanner(System.in);
-	//SCAVENGING
-	
+
 	public static void ScavengingCall() throws InterruptedException{
 		if(MainGame.settlementStats.isScavenging() && MainGame.settlementStats.getScavengingDays() == MainGame.settlementStats.getEndScavenging()) {
 			ReturnScavengers();
