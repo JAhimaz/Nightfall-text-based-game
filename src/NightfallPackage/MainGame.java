@@ -56,11 +56,11 @@ public class MainGame {
 			System.out.println("\nDay " + day + " Has Come To An End");	
 		}
 		
-		System.out.println("\n\nYOU HAVE MADE IT TO THE END GAME AFTER " + day + " DAYS SURVIVED");
+		System.out.println("\n\n< YOU HAVE MADE IT TO THE END GAME AFTER " + day + " DAYS SURVIVED");
 	}
 	
 	public static void DefaultStats() {
-		System.out.println("Give Your Settlement A Name: ");
+		System.out.println("< Give Your Settlement A Name: ");
 		System.out.print("\n> ");
 		settlementName = input.nextLine();
 		
@@ -89,7 +89,7 @@ public class MainGame {
 			input.nextLine();
 			
 			if(!(choice >= 1 && choice <= 4)) {
-				System.out.println("\nPlease Choose A Valid Option");
+				System.out.println("\n< Please Choose A Valid Option");
 			}else {
 				successfulChoice = choiceChecker(choice);
 			}
@@ -127,13 +127,13 @@ public class MainGame {
 		if(choice == 1 && !isScavenging) {
 			return true;
 		}else if(choice == 1 && isScavenging) {
-			System.out.println("\nYou Have Already Sent Out Scavengers!");
+			System.out.println("\n< You Have Already Sent Out Scavengers!");
 			return false;
 		}
 		if(choice == 2 && !marketAttacked) {
 			return true;
 		}else if(choice == 2 && marketAttacked) {
-			System.out.println("\nThe Market Has Been Attacked Recently and is Closed!");
+			System.out.println("\n< The Market Has Been Attacked Recently and is Closed!");
 		}
 		if(choice == 3) {
 			return true;
@@ -162,7 +162,7 @@ public class MainGame {
 		int choice;
 		
 		do {
-			System.out.println("\nHow Many Scavengers Do You Want To Send Out? (0 To Cancel)");
+			System.out.println("\n< How Many Scavengers Do You Want To Send Out? (0 To Cancel)");
 			
 			while(true) {
 				System.out.print("\n> ");
@@ -173,18 +173,18 @@ public class MainGame {
 			}
 
 			if(settlers <= choice) {
-				System.out.println("\nYou Don't Have That Many Settlers!");
+				System.out.println("\n< You Don't Have That Many Settlers!");
 			}else if(Math.abs((settlers-choice)) <= 2){
-				System.out.println("\nYou Need Atleast 2 Settlers In Your Base!");
+				System.out.println("\n< You Need Atleast 2 Settlers In Your Base!");
 			}else if(choice == 0) {
-				System.out.println("\nReturning To Daily Choice!");
+				System.out.println("\n< Returning To Daily Choice!");
 				successfulChoice = true;
 			}else {
-				System.out.println("\nYou Have Sent Out " + choice + " Scavengers!\n");
+				System.out.println("\n< You Have Sent Out " + choice + " Scavengers!\n");
 				if(playerStats.getWeapons() < choice) {
 					int currentWeapons = playerStats.getWeapons();
 					playerStats.setWeapons(playerStats.getWeapons() - playerStats.getWeapons());
-					System.out.println((choice-currentWeapons) + " Scavengers Dont Have Weapons To Defend Themselves.");
+					System.out.println("< " + (choice-currentWeapons) + " Scavengers Dont Have Weapons To Defend Themselves.");
 					scavengerswGuns = currentWeapons;
 					scavengerswoGuns = choice-currentWeapons;
 				}else {
@@ -209,7 +209,7 @@ public class MainGame {
 		int woodFound = (scavengingDays * (rand.nextInt((5 - 1) + 1) + 1));
 		int foodFound = (scavengingDays * (rand.nextInt((5 - 1) + 1) + 1));
 		int waterFound = (scavengingDays * (rand.nextInt((5 - 1) + 1) + 1));
-		System.out.println("\nYour Scavengers Have Returned With The Following");
+		System.out.println("\n< Your Scavengers Have Returned With The Following");
 		System.out.println("Metal: " + metalFound);
 		System.out.println("Wood: " + woodFound);
 		System.out.println("Food: " + foodFound);
@@ -226,36 +226,36 @@ public class MainGame {
 		//CONTINUE FROM HERE
 		System.out.println("=====================================\n");
 		double event = (Math.random() * 100); 
-		if(event <= 100) {
-			System.out.println("It Begins To Rain! Your Settlement Gathers Water.");
+		if(event <= 100 && event > 90) {
+			System.out.println("< It Begins To Rain! Your Settlement Gathers Water.");
 			int addedWater = (rand.nextInt((30 - 5) + 5) + 1);
-			System.out.println("Your Settlement Gathered " + addedWater + " Units of Water");
+			System.out.println("< Your Settlement Gathered " + addedWater + " Units of Water");
 			playerStats.setWater(playerStats.getWater() + addedWater);
 			Thread.sleep(1000);
-		}if(event <= 90) {
-			System.out.println("Your Settlement Is Under Attack!");
+		}if(event <= 90 && event > 70) {
+			System.out.println("< Your Settlement Is Under Attack!");
 			Thread.sleep(1000);
 			playerDead = true;
-		}if(event <= 70) {
-
-		}if(event <= 50) {
-			
-		}if(event <= 40) {
-			
-		}if(event <= 30) {
-			
-		}if(event <= 20) {
-			
+		}if(event <= 70 && event > 50) {
+			System.out.println("< Event 3");
+		}if(event <= 50 && event > 40) {
+			System.out.println("< Event 4");
+		}if(event <= 40 && event > 30) {
+			System.out.println("< Event 5");
+		}if(event <= 30 && event > 20) {
+			System.out.println("< Event 6");
+		}if(event <= 20 && event > 5) {
+			System.out.println("< Event 7");
 		}if(event <= 5) {
-			System.out.println("Your Settlers Gaze Upon The Horizon and Notice A Dark Egg Dropping From The Sky...");
+			System.out.println("< Your Settlers Gaze Upon The Horizon and Notice A Dark Egg Dropping From The Sky...");
 			Thread.sleep(1000);
-			System.out.println("The Sound Whizzing Through The Air, Its A Nuclear Bomb");
+			System.out.println("< The Sound Whizzing Through The Air, Its A Nuclear Bomb");
 			Thread.sleep(1000);
-			System.out.println("At This Point Theres No Hope, Your Settlement is Within the Blast Radius");
+			System.out.println("< At This Point Theres No Hope, Your Settlement is Within the Blast Radius");
 			Thread.sleep(1000);
-			System.out.println("Your Settlers Say Their Final GoodBye As The Explosion Lights Up The Sky");
+			System.out.println("< Your Settlers Say Their Final GoodBye As The Explosion Lights Up The Sky");
 			Thread.sleep(1000);
-			System.out.println("The Blistering Impact Of The Sound Levels Your Whole Settlement.");
+			System.out.println("< The Blistering Impact Of The Sound Levels Your Whole Settlement.");
 			playerDead = true;
 		}
 	}
