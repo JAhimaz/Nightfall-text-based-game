@@ -17,9 +17,9 @@ Random Events:
 - 15% New Settlers join your settlement!
 - 0.1% Nuclear Bomb.
 
-Scavenging:
+~~Scavenging:
 - The player is able to send out scavengers as long as he has the required amount of settlers (min. 2 in settlement at any given time).
-- Scavengers take a random amount of days (1-5) out in the wasteland and come back with food, water, metal, wood.
+~~- Scavengers take a random amount of days (1-5) out in the wasteland and come back with food, water, metal, wood.~~
 
 Settler System:
 - Giving each individual settler their own stats/gender/name and perks.
@@ -30,6 +30,9 @@ Removal of overall health:
 
 #### Currently Working On Features (Development 1.0.4)
 Features soon to be released and are in the works.
+
+Rework of Scavenging System:
+- The new addition of settler details/perks requires the scavenging system to be reworked.
 
 Addition of building structures:
 - Renaming "Rebuild Settlement" to "Settlement Management" allows the player to build structures (That require a certain amount of days depending on structure and keeps those settlers busy (Working Category).
