@@ -9,7 +9,7 @@ public class Menu {
 		int playerChoice;
 		//Call Main Menu Function
 		Misc.MenuCall();
-		playerChoice = Menu();
+		playerChoice = MainMenu();
 		switch(playerChoice) {
 			case 1:
 				LoadingScreen.GameLoad();
@@ -23,7 +23,7 @@ public class Menu {
 		}
 	}
 	
-	public static int Menu() {		
+	public static int MainMenu() {		
 		int choice;
 		System.out.print("\n> ");
 		choice = input.nextInt();
