@@ -11,7 +11,8 @@ public class MainGame {
 	static Scanner input = new Scanner(System.in);
 	public final static PlayerStats playerStats = new PlayerStats();
 	public final static SettlementStats settlementStats = new SettlementStats();
-	ArrayList<Integer> settlementItems = new ArrayList<Integer>();
+	static ArrayList<Settler> settlers = new ArrayList<Settler>();
+	static ArrayList<Integer> settlementItems = new ArrayList<Integer>();
 	
 	//USERINPUT
 	static int numberInput, dailyChoice;
@@ -43,53 +44,12 @@ public class MainGame {
 						break;
 				}
 			}
+			DayEndCall();
 			System.out.println("\n== Day " + settlementStats.getDay() + " Has Come To An End ==");	
 			Thread.sleep(2000);
 		}
 		
 		System.out.println("\n\n< YOU HAVE MADE IT TO THE END GAME AFTER " + settlementStats.getDay() + " DAYS SURVIVED");
-	}
-	
-	public static void DefaultStats() {
-		System.out.println("< Give Your Settlement A Name: ");
-		System.out.print("\n> ");
-		settlementStats.setSettlementName(input.nextLine());
-		
-		settlementStats.setSettlers(rand.nextInt((7 - 5) + 1) + 5);
-		settlementStats.setDefense(50); 
-		settlementStats.setHealth(100);
-		playerStats.setMetal(rand.nextInt((40 - 20) + 1) + 20); 
-		playerStats.setWood(rand.nextInt((40 - 20) + 1) + 20); 
-		playerStats.setWeapons(rand.nextInt((7 - 4) + 1) + 4); 
-		playerStats.setFood(rand.nextInt((60 - 40) + 1) + 20);
-		playerStats.setWater(rand.nextInt((60 - 40) + 1) + 20);
-	}
-	
-	public static int DayChoice() {
-		boolean successfulChoice = false;
-		int choice;
-		
-		do {
-			System.out.println("\n=================================");
-			System.out.println("What Would You Like To Do Today?");
-			System.out.println("1) Send Out A Scavenging Party");
-			System.out.println("2) Enter Market");
-			System.out.println("3) Rebuild Settlement ");
-			System.out.println("4) Skip Turn");
-			System.out.println("\n=================================");
-			
-			System.out.print("\n> ");
-			choice = input.nextInt();
-			input.nextLine();
-			
-			if(!(choice >= 1 && choice <= 4)) {
-				System.out.println("\n< Please Choose A Valid Option");
-			}else {
-				successfulChoice = choiceChecker(choice);
-			}
-		}while(!successfulChoice);
-
-		return choice;
 	}
 	
 	public static void DayStartCall() throws InterruptedException {
@@ -105,7 +65,6 @@ public class MainGame {
 			System.out.println("Settlers: " + settlementStats.getSettlers());
 		}
 		System.out.println("Defense: " + settlementStats.getDefense());
-		System.out.println("Health: " + settlementStats.getHealth());
 		Thread.sleep(1000);
 		System.out.println("\nCURRENT COMPONENTS:");
 		System.out.println("Metal: " + playerStats.getMetal());
@@ -117,7 +76,42 @@ public class MainGame {
 		Thread.sleep(1000);
 	}
 	
-	public static boolean choiceChecker(int choice) {
+	public static void DayEndCall() {
+		//The Settlers Consume Food/Water
+		//Only Settlers Currently in the Settlement
+		playerStats.setFood(playerStats.getFood() - settlementStats.getSettlers());
+		playerStats.setWater(playerStats.getWater() - settlementStats.getSettlers());
+	}
+	
+	public static int DayChoice() throws InterruptedException {
+		boolean successfulChoice = false;
+		int choice;
+		
+		do {
+			System.out.println("\n=================================");
+			System.out.println("What Would You Like To Do Today?");
+			System.out.println("1) Send Out A Scavenging Party");
+			System.out.println("2) Enter Market");
+			System.out.println("3) Settlement Management ");
+			System.out.println("4) View Settlers");
+			System.out.println("5) Skip Turn");
+			System.out.println("=================================");
+			
+			System.out.print("\n> ");
+			choice = input.nextInt();
+			input.nextLine();
+			
+			if(!(choice >= 1 && choice <= 5)) {
+				System.out.println("\n< Please Choose A Valid Option");
+			}else {
+				successfulChoice = choiceChecker(choice);
+			}
+		}while(!successfulChoice);
+
+		return choice;
+	}
+	
+	public static boolean choiceChecker(int choice) throws InterruptedException {
 		if(choice == 1 && !(settlementStats.isScavenging())) {
 			return true;
 		}else if(choice == 1 && settlementStats.isScavenging()) {
@@ -133,11 +127,53 @@ public class MainGame {
 			return true;
 		}
 		if(choice == 4) {
+			System.out.println("\n============================================");
+			System.out.println("\n< Current Settlers: \n");
+			for(Settler settler : settlers) {
+				System.out.println("- Name:  " + settler.getFirstName() + " " + settler.getLastName() + " - " +
+								   "Age: " + settler.getAge() + " - " +
+								   "Gender: " + settler.getGender());
+				System.out.println("  Health: " + settler.getHealth());
+				System.out.print("  Current Task: ");
+				if(settler.isBuilding()) {
+					System.out.print("Building");
+				}else if(settler.isScavenging()) {
+					System.out.print("Scavenging");
+				}else {
+					System.out.print("Idle");
+				}
+				System.out.println("\n");
+			}
+			System.out.println("============================================");
+			Misc.promptEnterKey();
+			return false;
+		}
+		if(choice == 5) {
+			System.out.println("\nSkipping Day");
 			settlementStats.setDayOverStatus(true);
 			return true;
 		}
 		return false;
 	}
 	
+	public static void DefaultStats() {
+		System.out.println("< Give Your Settlement A Name: ");
+		System.out.print("\n> ");
+		settlementStats.setSettlementName(input.nextLine());
+		
+		int settlersCreated = rand.nextInt((8-4) + 1) + 4;
+		for(int i = 1; i <= settlersCreated; i++) {
+			Settler newSettler = new Settler();
+			settlers.add(newSettler);
+		}
+		settlementStats.setSettlers(settlers.size());
+		
+		settlementStats.setDefense(50); 
+		playerStats.setMetal(rand.nextInt((40 - 20) + 1) + 20); 
+		playerStats.setWood(rand.nextInt((40 - 20) + 1) + 20); 
+		playerStats.setWeapons(rand.nextInt((7 - 4) + 1) + 4); 
+		playerStats.setFood(rand.nextInt((60 - 40) + 1) + 20);
+		playerStats.setWater(rand.nextInt((60 - 40) + 1) + 20);
+	}
 	
 }

@@ -1,5 +1,7 @@
 package NightfallPackage;
 
+import java.util.Scanner;
+
 public class Misc {
 	
 	public static void MenuCall(){
@@ -22,10 +24,18 @@ public class Misc {
 	}
 	
 	public static void EntryMessage() {
-		System.out.println("\n\n=========================================================================================================");
+		System.out.println("\n\n===========================================================================================================");
 		System.out.println("< Welcome to Nightfall! Your aim is to survive as many days as possible in a post apoctalyptic environment.");
+		System.out.println("< When prompted to input select the coressponding number unless explicitly told to enter a string!");
 		System.out.println("< There is little to no guidance so do your best and follow your gut.");
 		System.out.println("< Good Luck!");
-		System.out.println("=========================================================================================================\n");
+		System.out.println("===========================================================================================================\n");
 	}
+	
+	@SuppressWarnings("resource")
+	public static void promptEnterKey(){
+		   System.out.println("Press \"ENTER\" To Continue...");
+		   Scanner scanner = new Scanner(System.in);
+		   scanner.nextLine();
+		}
 }
