@@ -26,11 +26,10 @@ public class MainGame {
 		for(settlementStats.setDay(1); settlementStats.getDay() >= 1 && !playerStats.isPlayerDead(); settlementStats.incrementDay()) {	
 			Scavenging.ScavengingCall();
 			DayStartCall();
-			System.out.println("\n< Your Scavengers Will Return in " + (MainGame.settlementStats.getEndScavenging() - MainGame.settlementStats.getScavengingDays()) + " Days");
 			if(settlementStats.getDay() > 3) {
 				double eventRand = (Math.random() * 100); 
 				if(eventRand <= 75) {
-					randomEvent();
+					RandomEvents.randomEvent();
 					if(playerStats.isPlayerDead()) {
 						break;
 					}
@@ -140,44 +139,5 @@ public class MainGame {
 		return false;
 	}
 	
-	//EVENTS
-	public static void randomEvent() throws InterruptedException {
-		//CONTINUE FROM HERE
-		System.out.println("=====================================\n");
-		double event = (Math.random() * 100); 
-		if(event <= 100 && event > 90) {
-			System.out.println("< It Begins To Rain! Your Settlement Gathers Water.");
-			int addedWater = (rand.nextInt((30 - 5) + 5) + 1);
-			System.out.println("< Your Settlement Gathered " + addedWater + " Units of Water");
-			playerStats.setWater(playerStats.getWater() + addedWater);
-			Thread.sleep(1000);
-		}if(event <= 90 && event > 70) {
-			System.out.println("< Your Settlement Is Under Attack!");
-			Thread.sleep(1000);
-			playerStats.setPlayerStatus(true);
-		}if(event <= 70 && event > 50) {
-			System.out.println("< Event 3");
-		}if(event <= 50 && event > 40) {
-			System.out.println("< Event 4");
-		}if(event <= 40 && event > 30) {
-			System.out.println("< Event 5");
-		}if(event <= 30 && event > 20) {
-			System.out.println("< Event 6");
-		}if(event <= 20 && event > 5) {
-			System.out.println("< Event 7");
-		}if(event <= 5) {
-			System.out.println("< Your Settlers Gaze Upon The Horizon and Notice A Dark Egg Dropping From The Sky...");
-			Thread.sleep(1000);
-			System.out.println("< The Sound Whizzing Through The Air, Its A Nuclear Bomb");
-			Thread.sleep(1000);
-			System.out.println("< At This Point Theres No Hope, Your Settlement is Within the Blast Radius");
-			Thread.sleep(1000);
-			System.out.println("< Your Settlers Say Their Final GoodBye As The Explosion Lights Up The Sky");
-			Thread.sleep(1000);
-			System.out.println("< The Blistering Impact Of The Sound Levels Your Whole Settlement.");
-			playerStats.setPlayerStatus(true);
-		}
-		System.out.println("=====================================\n");
-		Thread.sleep(3000);
-	}
+	
 }

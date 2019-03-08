@@ -15,6 +15,9 @@ public class Scavenging {
 		}
 		else if(MainGame.settlementStats.isScavenging()) {
 			MainGame.settlementStats.incrementScaveningDays();
+			if(MainGame.settlementStats.getScavengingDays() > 0) {
+				System.out.println("\n< Your Scavengers Will Return in " + (((MainGame.settlementStats.getEndScavenging() - MainGame.settlementStats.getScavengingDays())) + 1) + " Days");
+			}
 		}
 	}
 	
