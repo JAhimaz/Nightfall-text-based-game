@@ -7,8 +7,7 @@ public class SettlementStats {
 	private String settlementName;
 	private int settlers,
 			    defense,
-			    scavengers, scavengerswGuns, scavengerswoGuns,
-			    health;		
+			    scavengers, scavengerswGuns, scavengerswoGuns;
 	//PLAYERSTATE
 	private boolean isScavenging = false,
 				    marketAttacked = false,
@@ -73,12 +72,6 @@ public class SettlementStats {
 	}
 	public void setScavengerswoGuns(int scavengerswoGuns) {
 		this.scavengerswoGuns = scavengerswoGuns;
-	}
-	public int getHealth() {
-		return health;
-	}
-	public void setHealth(int health) {
-		this.health = health;
 	}
 	public boolean isScavenging() {
 		return isScavenging;
