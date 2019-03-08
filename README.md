@@ -42,9 +42,14 @@ Farming:
 
 Future port to Unity?
 
+#### Current Known Bugs
+- Input Handling is Horrible lmao. (This is a main focus)
+
 #### End Credits
 The game is currently being worked on by:
 - Joey Nelson
 - Joshua Ahimaz
+
+A Patchnotes will be created once we leave development version.
 
 If you would like to **voluntarily** contribute to the game please contact me on discord at: Joshhh#6395
