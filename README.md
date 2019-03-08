@@ -10,7 +10,7 @@ Day to Day System:
 - Different Seasons affect the gameplay, amount of water/food your settlers need.
 
 Random Events:
-- 10% Rain (Acid/Normal) - Acid rain affects the water units while normal rain adds to it.
+- 10% Rain (Acid (15%) / Normal(75%) ) - Acid rain affects the water units while normal rain adds to it.
 - 5% Attacked by invaders. Damaging your defenses and possibly killing some settlers. (Although a reward of weapons and possibly surrendered invaders join your settlement).
 - 5% Natural Disaster Systems - Dust Storms, Earthquakes have chances of affecting your settlers and defenses (along with your settlement health).
 - 15% New Settlers join your settlement!
@@ -53,6 +53,7 @@ The game is currently being worked on by:
 - Joey Nelson
 - Joshua Ahimaz
 
+Do note that any mention of percentage is equivalent to chance of such given happening.
 A Patchnotes will be created once we leave development version.
 
 If you would like to **voluntarily** contribute to the game please contact me on discord at: Joshhh#6395
