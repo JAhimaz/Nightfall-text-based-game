@@ -6,6 +6,7 @@ public class PlayerStats {
 			   	weapons,
 			   	food,
 			   	water;
+	private boolean playerDead = false;
 
 	public int getMetal() {
 		return metal;
@@ -45,5 +46,13 @@ public class PlayerStats {
 
 	public void setWater(int water) {
 		this.water = water;
+	}
+
+	public boolean isPlayerDead() {
+		return playerDead;
+	}
+
+	public void setPlayerStatus(boolean playerDead) {
+		this.playerDead = playerDead;
 	}
 }
