@@ -1,5 +1,5 @@
-# NIGHTFALL - UNRELEASED AND MOVED TO JAVA GUI
-## ~~Development Build 1.0.3~~ The Build has been halted, as the project has been reworked. 
+# NIGHTFALL
+## Development Build 1.0.3
 #### About NightFall
 Nightfall takes the apocalypse survival genre back to gamings roots by using text based choices to decide the faith of the settlement with RNG being a heavy factor.
 
@@ -31,6 +31,9 @@ Removal of overall health:
 #### Currently Working On Features (Development 1.0.4)
 Features soon to be released and are in the works.
 
+Scavenging System Experience
+- Scavenging now awards the player with experience that allows him to send out more scavengers, and increases scavenging loot!
+
 Rework of Scavenging System:
 - The new addition of settler details/perks requires the scavenging system to be reworked.
 
@@ -47,8 +50,6 @@ Addition of Diseases:
 
 Farming:
 - Settlers can setup a farm depending on the season and can harvest food every certain amount of days depending on the type of food.
-
-Future port to Unity?
 
 #### Current Known Bugs
 - Input Handling is Horrible lmao. (This is a main focus)
