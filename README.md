@@ -1,5 +1,5 @@
-# NIGHTFALL
-## Development Build 1.0.3
+# NIGHTFALL - UNRELEASED AND MOVED TO JAVA GUI
+## ~~Development Build 1.0.3~~ The Build has been halted, as the project has been reworked. 
 #### About NightFall
 Nightfall takes the apocalypse survival genre back to gamings roots by using text based choices to decide the faith of the settlement with RNG being a heavy factor.
 
