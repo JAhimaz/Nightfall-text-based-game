@@ -104,6 +104,7 @@ public class Scavenging {
 			for(Settler scavenger : MainGame.scavengers) {					
 				System.out.println(id + ") Name:  " + scavenger.getFirstName() + " " + scavenger.getLastName());
 				System.out.println("  Health: " + scavenger.getHealth());
+				scavenger.setScavenging(true);
 				//Could Print Out Perks When Done
 				++id;
 			}	
@@ -142,6 +143,7 @@ public class Scavenging {
 		int length = MainGame.scavengers.size();
 		for(int i = 0; i < length; i++) {
 			Settler removed = MainGame.scavengers.remove(0);
+			removed.setScavenging(false);
 			MainGame.settlers.add(removed);
 		}
 		MainGame.settlementStats.setScavengingDays(0);
