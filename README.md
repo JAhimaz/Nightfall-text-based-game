@@ -41,6 +41,9 @@ Addition of building structures:
 #### Future Features (Later Builds)
 Future features not in the works but have been planned for.
 
+Weathers!
+- New weathers that cause different sicknesses, require more food and have higher chances for certain random events. oh and weather-specific random events!
+
 Addition of Diseases:
 - Random Diseases could affect your settlers
 - Only way is to get vaccinated by buying vaccines from the market or healing using medication (which takes days depending on sickness)
