@@ -60,9 +60,9 @@ public class MainGame {
 		System.out.println("SETTLEMENT DETAILS:");
 		System.out.println("Name: " + settlementStats.getSettlementName());
 		if(settlementStats.isScavenging()) {
-			System.out.print("Settlers: " + settlementStats.getSettlers() + " (" + settlementStats.getScavengers() + ") Scavenging\n");
+			System.out.print("Settlers: " + settlers.size() + " (" + scavengers.size() + ") Scavenging\n");
 		}else {
-			System.out.println("Settlers: " + settlementStats.getSettlers());
+			System.out.println("Settlers: " + settlers.size());
 		}
 		System.out.println("Defense: " + settlementStats.getDefense());
 		Thread.sleep(1000);
@@ -79,8 +79,8 @@ public class MainGame {
 	public static void DayEndCall() {
 		//The Settlers Consume Food/Water
 		//Only Settlers Currently in the Settlement
-		playerStats.setFood(playerStats.getFood() - settlementStats.getSettlers());
-		playerStats.setWater(playerStats.getWater() - settlementStats.getSettlers());
+		playerStats.setFood(playerStats.getFood() - settlers.size());
+		playerStats.setWater(playerStats.getWater() - settlers.size());
 	}
 	
 	public static int DayChoice() throws InterruptedException {
@@ -166,7 +166,6 @@ public class MainGame {
 			Settler newSettler = new Settler();
 			settlers.add(newSettler);
 		}
-		settlementStats.setSettlers(settlers.size());
 		
 		settlementStats.setDefense(50); 
 		playerStats.setMetal(rand.nextInt((40 - 20) + 1) + 20); 

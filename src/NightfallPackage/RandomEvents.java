@@ -47,11 +47,11 @@ public class RandomEvents {
 					MainGame.playerStats.setWater(MainGame.playerStats.getWater() + affect);
 					Thread.sleep(1000);
 				}
-			}if(event <= 90 && event > 70) {
+			}if(event <= 90 && event > 80) {
 				System.out.println("< Your Settlement Is Under Attack!");
 				Thread.sleep(1000);
 				//Setup Fight System.
-			}if(event <= 70 && event > 50) {
+			}if(event <= 80 && event > 50) {
 				System.out.println("< Event 3");
 			}if(event <= 50 && event > 40) {
 				System.out.println("< Event 4");

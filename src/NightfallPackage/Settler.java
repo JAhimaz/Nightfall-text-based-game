@@ -16,7 +16,7 @@ public class Settler {
 	private int age;
 	private int health;
 	
-	private boolean isScavenging, isBuilding, isHungry;
+	private boolean isScavenging, isBuilding, isHungry, hasGun;
 	
 	//Default Value Setter
 	public Settler() {
@@ -30,6 +30,7 @@ public class Settler {
 		this.isScavenging = false;
 		this.isBuilding = false;
 		this.isHungry = false;
+		this.hasGun = false;
 	}
 	
 	//GETTERS
@@ -78,6 +79,14 @@ public class Settler {
 
 	public void setHungry(boolean isHungry) {
 		this.isHungry = isHungry;
+	}
+
+	public boolean hasGun() {
+		return hasGun;
+	}
+
+	public void setHasGun(boolean hasGun) {
+		this.hasGun = hasGun;
 	}
 
 
