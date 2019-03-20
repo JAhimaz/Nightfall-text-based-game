@@ -60,6 +60,7 @@ public class RandomEvents {
 				newSettler.setHealth(rand.nextInt((100-85) + 85) + 1);
 				MainGame.settlers.add(newSettler);
 			}
+			System.out.println("\n< You Have Gained " + newSettlers + " New Settlers!");
 		}
 		
 		private static void RainEvent() throws InterruptedException {

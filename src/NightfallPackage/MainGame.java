@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class MainGame {
-	//Basic Java Components
 	static Random rand = new Random();
 	static Scanner input = new Scanner(System.in);
 	public final static PlayerStats playerStats = new PlayerStats();
@@ -16,7 +15,6 @@ public class MainGame {
 	public static ArrayList<Settler> builders = new ArrayList<Settler>();
 	public static ArrayList<Integer> settlementItems = new ArrayList<Integer>();
 	
-	//USERINPUT
 	static int numberInput, dailyChoice;
 	static String stringInput;
 	
@@ -26,14 +24,16 @@ public class MainGame {
 		//Do While Loop To End Game
 		for(settlementStats.setDay(1); settlementStats.getDay() >= 1 && !playerStats.isPlayerDead(); settlementStats.incrementDay()) {	
 			Scavenging.ScavengingCall();
+			CheckFoodAndWater();
+			if(playerStats.isPlayerDead())
+				break;
 			DayStartCall();
 			if(settlementStats.getDay() > 3) {
 				double eventRand = (Math.random() * 100); 
 				if(eventRand <= 25) {
 					RandomEvents.randomEvent();
-					if(playerStats.isPlayerDead()) {
+					if(playerStats.isPlayerDead())
 						break;
-					}
 				}
 			}
 			while(!settlementStats.isDayOver()) {
@@ -43,7 +43,7 @@ public class MainGame {
 						Scavenging.SendScavengers();
 						break;
 					case 2:
-						//SettlementManagement
+						SettlementManagement.SMmenu();
 				}
 			}
 			DayEndCall();
@@ -55,6 +55,7 @@ public class MainGame {
 	}
 	
 	public static void DayStartCall() throws InterruptedException {
+
 		settlementStats.setDayOverStatus(false);
 		System.out.println("\n=================================");
 		System.out.println("              DAY " + settlementStats.getDay() + "\n");
@@ -78,6 +79,43 @@ public class MainGame {
 		Thread.sleep(1000);
 	}
 	
+	private static void CheckFoodAndWater() {
+		if(playerStats.getFood() <= 0 && !playerStats.isFoodLess()) {
+			System.out.println("\n< Your Settlement Has Run Out Of Food!");
+			playerStats.noFood(true);
+		}
+		if(playerStats.getWater() <= 0 && !playerStats.isWaterLess()) {
+			System.out.println("\n< Your Settlement Has Run Out Of Water!");
+			playerStats.noWater(true);
+		}
+		if(playerStats.getWater() <= 0) {
+			playerStats.setWater(0);
+			playerStats.setDaysWithoutFood(playerStats.getDaysWithoutFood() + 1);
+		}
+		if(playerStats.getFood() <= 0) {
+			playerStats.setFood(0);
+			playerStats.setDaysWithoutWater(playerStats.getDaysWithoutWater() + 1);
+		}
+		if(playerStats.isFoodLess() && playerStats.getFood() > 0) {
+			playerStats.noFood(false);
+			playerStats.setDaysWithoutFood(0);
+		}
+		if(playerStats.isWaterLess() && playerStats.getWater() > 0) {
+			playerStats.noWater(false);
+			playerStats.setDaysWithoutWater(0);
+		}
+		if(playerStats.getDaysWithoutFood() >= 2 || playerStats.getDaysWithoutWater() >= 2) {
+			if(playerStats.getDaysWithoutFood() >= 2 && playerStats.getDaysWithoutWater() >= 2) {
+				System.out.println("\n< Your Settlers Have Died From The Lack Of Food And Water!");
+			}else if(playerStats.getDaysWithoutFood() >= 2) {
+				System.out.println("\n< Your Settlers Have Died From The Lack Of Food!");
+			}else if(playerStats.getDaysWithoutWater() >= 2) {
+				System.out.println("\n< Your Settlers Have Died From The Lack Of Water!");
+			}
+			MainGame.playerStats.setPlayerStatus(true);
+		}
+	}
+
 	public static void DayEndCall() {
 		//The Settlers Consume Food/Water
 		//Only Settlers Currently in the Settlement
@@ -189,7 +227,8 @@ public class MainGame {
 		playerStats.setMetal(rand.nextInt((40 - 20) + 1) + 20); 
 		playerStats.setWood(rand.nextInt((40 - 20) + 1) + 20); 
 		playerStats.setWeapons(rand.nextInt((7 - 4) + 1) + 4); 
-		playerStats.setFood(rand.nextInt((60 - 40) + 1) + 20);
+		playerStats.setFood(1);
+//		playerStats.setFood(rand.nextInt((60 - 40) + 1) + 20);
 		playerStats.setWater(rand.nextInt((60 - 40) + 1) + 20);
 	}
 	

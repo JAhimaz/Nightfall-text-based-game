@@ -5,8 +5,11 @@ public class PlayerStats {
 			   	wood,
 			   	weapons,
 			   	food,
-			   	water;
-	private boolean playerDead = false;
+			   	water,
+				
+				daysWithoutFood = 0,
+				daysWithoutWater = 0;
+	private boolean playerDead = false, foodLess = false, waterLess = false;
 
 	public int getMetal() {
 		return metal;
@@ -54,5 +57,37 @@ public class PlayerStats {
 
 	public void setPlayerStatus(boolean playerDead) {
 		this.playerDead = playerDead;
+	}
+
+	public boolean isFoodLess() {
+		return foodLess;
+	}
+
+	public void noFood(boolean foodLess) {
+		this.foodLess = foodLess;
+	}
+
+	public boolean isWaterLess() {
+		return waterLess;
+	}
+
+	public void noWater(boolean waterLess) {
+		this.waterLess = waterLess;
+	}
+
+	public int getDaysWithoutFood() {
+		return daysWithoutFood;
+	}
+
+	public void setDaysWithoutFood(int daysWithoutFood) {
+		this.daysWithoutFood = daysWithoutFood;
+	}
+
+	public int getDaysWithoutWater() {
+		return daysWithoutWater;
+	}
+
+	public void setDaysWithoutWater(int daysWithoutWater) {
+		this.daysWithoutWater = daysWithoutWater;
 	}
 }
