@@ -42,6 +42,8 @@ public class MainGame {
 					case 1:
 						Scavenging.SendScavengers();
 						break;
+					case 2:
+						//SettlementManagement
 				}
 			}
 			DayEndCall();
@@ -144,9 +146,25 @@ public class MainGame {
 				}
 				System.out.println("\n");
 			}
+			
+			for(Settler settler : scavengers) {
+				System.out.println("- Name:  " + settler.getFirstName() + " " + settler.getLastName() + " - " +
+								   "Age: " + settler.getAge() + " - " +
+								   "Gender: " + settler.getGender());
+				System.out.println("  Health: " + settler.getHealth());
+				System.out.print("  Current Task: ");
+				if(settler.isBuilding()) {
+					System.out.print("Building");
+				}else if(settler.isScavenging()) {
+					System.out.print("Scavenging");
+				}else {
+					System.out.print("Idle");
+				}
+				System.out.println("\n");
+			}
 			System.out.println("============================================");
 			Misc.promptEnterKey();
-			return false;
+			return true;
 		}
 		if(choice == 5) {
 			System.out.println("\nSkipping Day");

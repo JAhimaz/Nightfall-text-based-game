@@ -15,53 +15,23 @@ public class RandomEvents {
 			//CONTINUE FROM HERE
 			System.out.println("\n=====================================");
 			double event = (Math.random() * 100); 
-			if(event <= 100 && event > 90) {
-				System.out.println("< It Begins To Rain!");
-				Thread.sleep(1000);
-				internalEvent = (Math.random() * 100); 
-				if(internalEvent <= 15 && internalEvent >= 0) {
-					System.out.println("< Its Acid Rain, Your Water Supply is Affected!");
-					//Possibly harm settlers too.
-					Thread.sleep(1000);
-					affect = (rand.nextInt((15 - 5) + 5) + 1);
-					System.out.println("< Your Settlement Lost " + affect + " Units of Water To The Acid Rain");
-					MainGame.playerStats.setWater(MainGame.playerStats.getWater() - affect);
-					Thread.sleep(1000);
-					
-					internalEvent = (Math.random() * 100);
-					if(internalEvent <= 10 && internalEvent >= 0) {
-						System.out.println("< The Acid Rain Also Has Ruined Your Fortifications.");
-						Thread.sleep(1000);
-						affect = (rand.nextInt((15 - 5) + 5) + 1);
-						System.out.println("< Your Settlements Defenses Have Fallen By " + affect);
-						MainGame.settlementStats.setDefense(MainGame.settlementStats.getDefense() - affect);
-						Thread.sleep(1000);
-					}
-				}else {
-					System.out.println("< The Rain Is Fresh and Drinkable!");
-					Thread.sleep(1000);
-					System.out.println("< Your Settlers Gather The Water For Drinking.");
-					Thread.sleep(1000);
-					affect = (rand.nextInt((30 - 5) + 5) + 1);
-					System.out.println("< Your Settlement Gathered " + affect + " Units of Water");
-					MainGame.playerStats.setWater(MainGame.playerStats.getWater() + affect);
-					Thread.sleep(1000);
-				}
-			}if(event <= 90 && event > 80) {
+			if(event <= 100 && event > 90) { //RainEvent
+				RainEvent();
+			}if(event <= 90 && event > 85) {
 				System.out.println("< Your Settlement Is Under Attack!");
 				Thread.sleep(1000);
 				//Setup Fight System.
-			}if(event <= 80 && event > 50) {
+			}if(event <= 85 && event > 80) { //Random Storm (FUTURE WEATHERS)
 				System.out.println("< Event 3");
-			}if(event <= 50 && event > 40) {
+			}if(event <= 80 && event > 70) { //Random DustStorm (FUTURE WEATHERS)
 				System.out.println("< Event 4");
-			}if(event <= 40 && event > 30) {
+			}if(event <= 70 && event > 60) { //Random EarthQuake (FUTURE WEATHERS)
 				System.out.println("< Event 5");
-			}if(event <= 30 && event > 20) {
-				System.out.println("< Event 6");
-			}if(event <= 20 && event > 5) {
+			}if(event <= 60 && event > 40) { //Strangers Join Your Settlement!
+				SettlerEvent();
+			}if(event <= 40 && event > 5) {
 				System.out.println("< Event 7");
-			}if(event <= 2) {
+			}if(event <= 2) { //Nuclear Bomb
 				System.out.println("< Your Settlers Gaze Upon The Horizon and Notice A Dark Egg Dropping From The Sky...");
 				Thread.sleep(1000);
 				System.out.println("< The Sound Whizzing Through The Air, Its A Nuclear Bomb");
@@ -75,5 +45,54 @@ public class RandomEvents {
 			}
 			System.out.println("=====================================\n");
 			Thread.sleep(3000);
+		}
+		
+		private static void SettlerEvent() throws InterruptedException {
+			System.out.println("< You Eye Some Strangers In The Distance! They Approach Unarmed...");
+			Thread.sleep(1000);
+			System.out.println("< They Approach With Caution As Your Settlers Draw Their Weapons...");
+			Thread.sleep(1000);
+			System.out.println("< Slowly Lowering Their Weapons, Your Settlers Welcome The New Survivors...");
+			Thread.sleep(1000);
+			int newSettlers = (rand.nextInt((5-2) + 2) + 1);
+			for(int i = 1; i <= newSettlers; i++) {
+				Settler newSettler = new Settler();
+				newSettler.setHealth(rand.nextInt((100-85) + 85) + 1);
+				MainGame.settlers.add(newSettler);
+			}
+		}
+		
+		private static void RainEvent() throws InterruptedException {
+			System.out.println("< It Begins To Rain!");
+			Thread.sleep(1000);
+			internalEvent = (Math.random() * 100); 
+			if(internalEvent <= 15 && internalEvent >= 0) {
+				System.out.println("< Its Acid Rain, Your Water Supply is Affected!");
+				//Possibly harm settlers too.
+				Thread.sleep(1000);
+				affect = (rand.nextInt((15 - 5) + 5) + 1);
+				System.out.println("< Your Settlement Lost " + affect + " Units of Water To The Acid Rain");
+				MainGame.playerStats.setWater(MainGame.playerStats.getWater() - affect);
+				Thread.sleep(1000);
+				
+				internalEvent = (Math.random() * 100);
+				if(internalEvent <= 10 && internalEvent >= 0) {
+					System.out.println("< The Acid Rain Also Has Ruined Your Fortifications.");
+					Thread.sleep(1000);
+					affect = (rand.nextInt((15 - 5) + 5) + 1);
+					System.out.println("< Your Settlements Defenses Have Fallen By " + affect);
+					MainGame.settlementStats.setDefense(MainGame.settlementStats.getDefense() - affect);
+					Thread.sleep(1000);
+				}
+			}else {
+				System.out.println("< The Rain Is Fresh and Drinkable!");
+				Thread.sleep(1000);
+				System.out.println("< Your Settlers Gather The Water For Drinking.");
+				Thread.sleep(1000);
+				affect = (rand.nextInt((30 - 5) + 5) + 1);
+				System.out.println("< Your Settlement Gathered " + affect + " Units of Water");
+				MainGame.playerStats.setWater(MainGame.playerStats.getWater() + affect);
+				Thread.sleep(1000);
+			}
 		}
 }
