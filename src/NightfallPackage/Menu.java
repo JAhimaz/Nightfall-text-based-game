@@ -18,6 +18,9 @@ public class Menu {
 				System.exit(0);
 				//Quit Game
 				break;
+			case 3:
+				MainGame.GameBoard();
+				break;
 			default:
 				break;
 		}
@@ -28,12 +31,12 @@ public class Menu {
 		System.out.print("\n> ");
 		choice = input.nextInt();
 		input.nextLine();
-		if(!(choice >= 1 && choice <= 2)) {
+		if(!(choice >= 1 && choice <= 3)) { //Change Back to 2
 			do {
 				System.out.print("Please Enter A Valid Choice: ");
 				choice = input.nextInt();
 				input.nextLine();
-			}while(!(choice >= 1 && choice <= 2));
+			}while(!(choice >= 1 && choice <= 3));
 		}	
 		return choice;
 	}

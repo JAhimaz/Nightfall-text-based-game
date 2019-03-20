@@ -29,7 +29,7 @@ public class MainGame {
 			DayStartCall();
 			if(settlementStats.getDay() > 3) {
 				double eventRand = (Math.random() * 100); 
-				if(eventRand <= 75) {
+				if(eventRand <= 25) {
 					RandomEvents.randomEvent();
 					if(playerStats.isPlayerDead()) {
 						break;
