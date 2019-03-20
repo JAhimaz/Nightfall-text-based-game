@@ -21,59 +21,88 @@ public class Scavenging {
 	}
 	
 	public static void SendScavengers() {
-		boolean successfulChoice = false;
+		boolean successfulChoice = false, limit = false;
 		int choice;
 		
 		do {
-			System.out.println("\n< How Many Scavengers Do You Want To Send Out? (0 To Cancel)");
-			
-			while(true) {
+			do {
+				if(MainGame.settlers.size() == 2) {
+					System.out.println("You need atleast 2 Settlers In Your Base, Sending out the currently Chosen Scavengers");
+					break;
+				}
+				if(MainGame.scavengers.size() == 4) { //Edit According to Scavenging Level
+					
+				}
+				
+				System.out.println("\n< Who Do You Want To Send Out? (0 To Send Selected | -1 to Cancel)");
+				System.out.println("============================================");
+				System.out.println("\n< Current Settlers: \n");
+				int id = 1;
+				for(Settler settler : MainGame.settlers) {
+					if(settler.getAge() >= 20 && settler.getAge() <= 60) {
+						System.out.println(id + ") Name:  " + settler.getFirstName() + " " + settler.getLastName());
+						System.out.println("  Health: " + settler.getHealth());
+						//Could Print Out Perks When Done
+					}
+					++id;
+				}
+				System.out.println("============================================");
+				System.out.println("\n< Chosen Scavengers: \n");
+				if(MainGame.scavengers.size() == 0) {
+					System.out.println("No-one Has Been Chosen Yet..");
+				}else {
+					id = 1;
+					for(Settler scavenger : MainGame.scavengers) {					
+						System.out.println(id + ") Name:  " + scavenger.getFirstName() + " " + scavenger.getLastName());
+						System.out.println("  Health: " + scavenger.getHealth());
+						//Could Print Out Perks When Done
+						++id;
+					}
+				}
+				System.out.println("============================================");
+		
 				System.out.print("\n> ");
 				choice = input.nextInt();
 				input.nextLine();
-				//CONTINUE FROM HERE
-				break;
-			}
-
-			if(MainGame.settlementStats.getSettlers() <= choice) {
-				System.out.println("\n< You Don't Have That Many Settlers!");
-			}else if(Math.abs((MainGame.settlementStats.getSettlers()-choice)) <= 2){
-				System.out.println("\n< You Need Atleast 2 Settlers In Your Base!");
-			}else if(choice == 0) {
-				System.out.println("\n< Returning To Daily Choice!");
-				successfulChoice = true;
-			}else {
-				System.out.println("\n< You Have Sent Out " + choice + " Scavengers!\n");
-				if(MainGame.playerStats.getWeapons() < choice) {
-					int currentWeapons = MainGame.playerStats.getWeapons();
-					MainGame.playerStats.setWeapons(MainGame.playerStats.getWeapons() - MainGame.playerStats.getWeapons());
-					System.out.println("< " + (choice-currentWeapons) + " Scavengers Dont Have Weapons To Defend Themselves.");
-					MainGame.settlementStats.setScavengerswGuns(currentWeapons);
-					MainGame.settlementStats.setScavengerswoGuns(choice-currentWeapons);
-				}else {
-					MainGame.playerStats.setWeapons(MainGame.playerStats.getWeapons() - choice);
-					MainGame.settlementStats.setScavengerswGuns(choice);
-					MainGame.settlementStats.setScavengerswoGuns(0);
+				if(!(choice >= 0 && choice <= MainGame.settlers.size())) {
+					do {
+						System.out.print("Please Enter A Valid Choice: ");
+						choice = input.nextInt();
+						input.nextLine();
+					}while(!(choice >= 0 && choice <= MainGame.settlers.size()));
+				}else if(choice == -1) {
+					System.out.println("\n< Returning To Daily Choice!");
+					successfulChoice = true;
+				}else if(choice == 0) {
+					break;
+				}else{
+					Settler removed = MainGame.settlers.remove(choice-1);
+					MainGame.scavengers.add(removed);
 				}
-				MainGame.settlementStats.setSettlers(MainGame.settlementStats.getSettlers() - choice);
-				MainGame.settlementStats.setScavengers(choice);
-				MainGame.settlementStats.setScavengingStatus(true);
-				MainGame.settlementStats.setScavengingDays(0);
-				MainGame.settlementStats.setEndScavenging(rand.nextInt((5 - 1) + 1) + 1);
-				System.out.println("< Your Scavengers Will Return in " + MainGame.settlementStats.getEndScavenging() + " Days");
-				successfulChoice = true;
-				MainGame.settlementStats.setDayOverStatus(true);
-			}
+			}while(choice != 0 || limit == true);
+			System.out.println("> Sending Out " + MainGame.scavengers.size() + " Scavengers!");		
+//			if(MainGame.playerStats.getWeapons() < MainGame.scavengers.size()) {
+//
+//			}else {
+//
+//			}	
+			MainGame.settlementStats.setScavengingStatus(true);
+			MainGame.settlementStats.setScavengingDays(0);
+			MainGame.settlementStats.setEndScavenging(rand.nextInt((5 - 1) + 1) + 1);
+//			System.out.println("< Your Scavengers Will Return in " + MainGame.settlementStats.getEndScavenging() + " Days");
+			successfulChoice = true;
+			MainGame.settlementStats.setDayOverStatus(true);
+			
 		}while(!successfulChoice);
 	}
 	
 	public static void ReturnScavengers() {
-		MainGame.settlementStats.setScavengingStatus(false); MainGame.settlementStats.setSettlers(MainGame.settlementStats.getSettlers() + MainGame.settlementStats.getScavengers());
-		MainGame.playerStats.setWeapons(MainGame.playerStats.getWeapons() + MainGame.settlementStats.getScavengers());
-		int metalFound = (MainGame.settlementStats.getScavengingDays() * (rand.nextInt((5 - 1) + 1) + 1)) * MainGame.settlementStats.getScavengers();
-		int woodFound = (MainGame.settlementStats.getScavengingDays() * (rand.nextInt((5 - 1) + 1) + 1)) * MainGame.settlementStats.getScavengers();
-		int foodFound = (MainGame.settlementStats.getScavengingDays() * (rand.nextInt((5 - 1) + 1) + 1)) * MainGame.settlementStats.getScavengers();
-		int waterFound = (MainGame.settlementStats.getScavengingDays() * (rand.nextInt((5 - 1) + 1) + 1)) * MainGame.settlementStats.getScavengers();
+		MainGame.settlementStats.setScavengingStatus(false); 		
+		//PUT WEAPONS BACK
+		int metalFound = (MainGame.settlementStats.getScavengingDays() * (rand.nextInt((5 - 1) + 1) + 1)) * MainGame.scavengers.size();
+		int woodFound = (MainGame.settlementStats.getScavengingDays() * (rand.nextInt((5 - 1) + 1) + 1)) * MainGame.scavengers.size();
+		int foodFound = (MainGame.settlementStats.getScavengingDays() * (rand.nextInt((5 - 1) + 1) + 1)) * MainGame.scavengers.size();
+		int waterFound = (MainGame.settlementStats.getScavengingDays() * (rand.nextInt((5 - 1) + 1) + 1)) * MainGame.scavengers.size();
 		System.out.println("\n< Your Scavengers Have Returned With The Following");
 		System.out.println("Metal: " + metalFound);
 		System.out.println("Wood: " + woodFound);
@@ -81,9 +110,12 @@ public class Scavenging {
 		System.out.println("Water: " + waterFound);
 		MainGame.playerStats.setMetal(MainGame.playerStats.getMetal() + metalFound); MainGame.playerStats.setWood(MainGame.playerStats.getWood() + woodFound); 
 		MainGame.playerStats.setFood(MainGame.playerStats.getFood() + foodFound); MainGame.playerStats.setWater(MainGame.playerStats.getWater() + waterFound);
-		MainGame.settlementStats.setScavengers(0);
-		MainGame.settlementStats.setScavengerswGuns(0);
-		MainGame.settlementStats.setScavengerswoGuns(0);
+		//REMOVE FROM SCAVENGERS AND PUT BACK IN SETTLERS
+		int Length = MainGame.scavengers.size();
+		for(int i = 0; i <= Length; i++) {
+			Settler removed = MainGame.scavengers.remove(i);
+			MainGame.settlers.add(removed);
+		}
 		MainGame.settlementStats.setScavengingDays(0);
 		MainGame.settlementStats.setEndScavenging(0);
 	}

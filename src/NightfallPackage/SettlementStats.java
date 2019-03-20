@@ -5,9 +5,7 @@ public class SettlementStats {
 	private int day, scavengingDays, endScavenging;
 	//SETTLEMENT DETAILS
 	private String settlementName;
-	private int settlers,
-			    defense,
-			    scavengers, scavengerswGuns, scavengerswoGuns;
+	private int defense;
 	//PLAYERSTATE
 	private boolean isScavenging = false,
 				    marketAttacked = false,
@@ -43,36 +41,14 @@ public class SettlementStats {
 	public void setSettlementName(String settlementName) {
 		this.settlementName = settlementName;
 	}
-	public int getSettlers() {
-		return settlers;
-	}
-	public void setSettlers(int settlers) {
-		this.settlers = settlers;
-	}
+
 	public int getDefense() {
 		return defense;
 	}
 	public void setDefense(int defense) {
 		this.defense = defense;
 	}
-	public int getScavengers() {
-		return scavengers;
-	}
-	public void setScavengers(int scavengers) {
-		this.scavengers = scavengers;
-	}
-	public int getScavengerswGuns() {
-		return scavengerswGuns;
-	}
-	public void setScavengerswGuns(int scavengerswGuns) {
-		this.scavengerswGuns = scavengerswGuns;
-	}
-	public int getScavengerswoGuns() {
-		return scavengerswoGuns;
-	}
-	public void setScavengerswoGuns(int scavengerswoGuns) {
-		this.scavengerswoGuns = scavengerswoGuns;
-	}
+
 	public boolean isScavenging() {
 		return isScavenging;
 	}
