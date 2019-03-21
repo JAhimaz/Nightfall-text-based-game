@@ -32,6 +32,15 @@ public class Misc {
 		System.out.println("===========================================================================================================\n");
 	}
 	
+	public static void SettlementManagementMenu() {
+		System.out.println("\n");
+		System.out.println("============== SETTLEMENT MANAGEMENT ==============");
+		System.out.println("What Would You Like To Manage In Your Settlement?");
+		System.out.println("\n1) Building"); 
+		System.out.println("2) Farming");
+		System.out.println("3) Back");
+	}
+	
 	@SuppressWarnings("resource")
 	public static void promptEnterKey(){
 		   System.out.println("Press \"ENTER\" To Continue...");

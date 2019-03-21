@@ -110,15 +110,22 @@ public class Scavenging {
 			}	
 			System.out.println("\n============================================");
 			Thread.sleep(3000);
-//			if(MainGame.playerStats.getWeapons() < MainGame.scavengers.size()) {
-//
-//			}else {
-//
-//			}	
+			if(MainGame.scavengers.size() > MainGame.playerStats.getWeapons()) {
+				int amountOfWeaponHolders = MainGame.scavengers.size() - MainGame.playerStats.getWeapons();
+				for(int i = 0; i <= amountOfWeaponHolders; i++) {
+					MainGame.scavengers.get(i).setHasGun(true);
+					MainGame.playerStats.setWeapons(MainGame.playerStats.getWeapons() - 1);
+				}
+			}else {
+				for(int i = 0; i < MainGame.scavengers.size(); i++) {
+					MainGame.scavengers.get(i).setHasGun(true);
+					MainGame.playerStats.setWeapons(MainGame.playerStats.getWeapons() - 1);
+				}
+			}	
 			MainGame.settlementStats.setScavengingStatus(true);
 			MainGame.settlementStats.setScavengingDays(0);
 			MainGame.settlementStats.setEndScavenging(rand.nextInt((5 - 1) + 1) + 1);
-//			System.out.println("< Your Scavengers Will Return in " + MainGame.settlementStats.getEndScavenging() + " Days");
+			System.out.println("< Your Scavengers Will Return in " + MainGame.settlementStats.getEndScavenging() + " Days");
 			successfulChoice = true;
 			MainGame.settlementStats.setDayOverStatus(true);
 			
@@ -141,6 +148,10 @@ public class Scavenging {
 		MainGame.playerStats.setMetal(MainGame.playerStats.getMetal() + metalFound); MainGame.playerStats.setWood(MainGame.playerStats.getWood() + woodFound); 
 		MainGame.playerStats.setFood(MainGame.playerStats.getFood() + foodFound); MainGame.playerStats.setWater(MainGame.playerStats.getWater() + waterFound);
 		int length = MainGame.scavengers.size();
+		for(int i = 0; i <= length; i++) {
+			MainGame.scavengers.get(i).setHasGun(false);
+			MainGame.playerStats.setWeapons(MainGame.playerStats.getWeapons() + 1);
+		}
 		for(int i = 0; i < length; i++) {
 			Settler removed = MainGame.scavengers.remove(0);
 			removed.setScavenging(false);

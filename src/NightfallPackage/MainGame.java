@@ -43,7 +43,11 @@ public class MainGame {
 						Scavenging.SendScavengers();
 						break;
 					case 2:
+						//Entering The Market
+						break;
+					case 3:
 						SettlementManagement.SMmenu();
+						break;
 				}
 			}
 			DayEndCall();
@@ -199,6 +203,7 @@ public class MainGame {
 					System.out.print("Idle");
 				}
 				System.out.println("\n");
+				
 			}
 			System.out.println("============================================");
 			Misc.promptEnterKey();
@@ -227,8 +232,7 @@ public class MainGame {
 		playerStats.setMetal(rand.nextInt((40 - 20) + 1) + 20); 
 		playerStats.setWood(rand.nextInt((40 - 20) + 1) + 20); 
 		playerStats.setWeapons(rand.nextInt((7 - 4) + 1) + 4); 
-		playerStats.setFood(1);
-//		playerStats.setFood(rand.nextInt((60 - 40) + 1) + 20);
+		playerStats.setFood(rand.nextInt((60 - 40) + 1) + 20);
 		playerStats.setWater(rand.nextInt((60 - 40) + 1) + 20);
 	}
 	

@@ -10,6 +10,8 @@ public class SettlementStats {
 	private boolean isScavenging = false,
 				    marketAttacked = false,
 				    dayOver = false;
+	//SETTLEMENT BUILDINGS
+	private boolean hasBunker, hasFarm, hasForge, hasCrafting, hasWaterPump;
 	
 	public int getDay() {
 		return day;
@@ -66,5 +68,35 @@ public class SettlementStats {
 	}
 	public void setDayOverStatus(boolean dayOver) {
 		this.dayOver = dayOver;
+	}
+	public boolean hasBunker() {
+		return hasBunker;
+	}
+	public void setHasBunker(boolean hasBunker) {
+		this.hasBunker = hasBunker;
+	}
+	public boolean hasFarm() {
+		return hasFarm;
+	}
+	public void setHasFarm(boolean hasFarm) {
+		this.hasFarm = hasFarm;
+	}
+	public boolean hasForge() {
+		return hasForge;
+	}
+	public void setHasForge(boolean hasForge) {
+		this.hasForge = hasForge;
+	}
+	public boolean hasCrafting() {
+		return hasCrafting;
+	}
+	public void setHasCrafting(boolean hasCrafting) {
+		this.hasCrafting = hasCrafting;
+	}
+	public boolean hasWaterPump() {
+		return hasWaterPump;
+	}
+	public void setHasWaterPump(boolean hasWaterPump) {
+		this.hasWaterPump = hasWaterPump;
 	}
 }
