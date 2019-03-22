@@ -37,6 +37,15 @@ Scavenging System Experience
 Addition of building structures:
 - Renaming "Rebuild Settlement" to "Settlement Management" allows the player to build structures (That require a certain amount of days depending on structure and keeps those settlers busy (Working Category).
 - Able to create nuclear bunkers to take cover during a nuclear blast, though the settlement defenses will be wiped to 0.
+- Buildings now include:
+  - Farms
+  - Bunker
+  - Crafting Houses
+  - Forges
+  - Water Pumps
+
+Farming:
+- Settlers can setup a farm depending on the season and can harvest food every certain amount of days depending on the type of food.
 
 #### Future Features (Later Builds)
 Future features not in the works but have been planned for.
@@ -47,9 +56,6 @@ Weathers!
 Addition of Diseases:
 - Random Diseases could affect your settlers
 - Only way is to get vaccinated by buying vaccines from the market or healing using medication (which takes days depending on sickness)
-
-Farming:
-- Settlers can setup a farm depending on the season and can harvest food every certain amount of days depending on the type of food.
 
 #### Current Known Bugs
 - Input Handling is Horrible lmao. (This is a main focus)
