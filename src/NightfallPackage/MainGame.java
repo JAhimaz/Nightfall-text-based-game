@@ -3,6 +3,9 @@ package NightfallPackage;
 import java.util.Random;
 import java.lang.Math; 
 import java.util.Scanner;
+
+import InputHandling.InputHandling;
+
 import java.util.ArrayList;
 
 public class MainGame {
@@ -141,15 +144,8 @@ public class MainGame {
 			System.out.println("5) Skip Turn");
 			System.out.println("=================================");
 			
-			System.out.print("\n> ");
-			choice = input.nextInt();
-			input.nextLine();
-			
-			if(!(choice >= 1 && choice <= 5)) {
-				System.out.println("\n< Please Choose A Valid Option");
-			}else {
-				successfulChoice = choiceChecker(choice);
-			}
+			choice = InputHandling.Integer(1, 5);
+			successfulChoice = choiceChecker(choice);
 		}while(!successfulChoice);
 
 		return choice;

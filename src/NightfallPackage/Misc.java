@@ -30,12 +30,14 @@ public class Misc {
 		System.out.println("< There is little to no guidance so do your best and follow your gut.");
 		System.out.println("< Good Luck!");
 		System.out.println("===========================================================================================================\n");
+		promptEnterKey();
+		clearConsole();
 	}
 	
 	public static void SettlementManagementMenu() {
 		System.out.println("\n");
 		System.out.println("============== SETTLEMENT MANAGEMENT ==============");
-		System.out.println("What Would You Like To Manage In Your Settlement?");
+		System.out.println("< What Would You Like To Manage In Your Settlement?");
 		System.out.println("\n1) Building"); 
 		System.out.println("2) Farming");
 		System.out.println("3) Back");
@@ -46,5 +48,21 @@ public class Misc {
 		   System.out.println("Press \"ENTER\" To Continue...");
 		   Scanner scanner = new Scanner(System.in);
 		   scanner.nextLine();
-		}
+	}
+	
+	public final static void clearConsole(){
+	    try{
+	        final String os = System.getProperty("os.name");
+
+	        if (os.contains("Windows")){
+	            Runtime.getRuntime().exec("cls");
+	        }
+	        else{
+	            Runtime.getRuntime().exec("clear");
+	        }
+	    }
+	    catch (final Exception e){
+	        //  Handle any exceptions.
+	    }
+	}
 }

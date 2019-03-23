@@ -3,6 +3,8 @@ package NightfallPackage;
 import java.util.Random;
 import java.util.Scanner;
 
+import InputHandling.InputHandling;
+
 public class SettlementManagement {
 	
 	//Basic Java Components
@@ -13,10 +15,10 @@ public class SettlementManagement {
 		int playerChoice;
 		//Call Main Menu Function
 		Misc.SettlementManagementMenu();
-		playerChoice = SMmenuChoice();
+		playerChoice = InputHandling.Integer(1, 3);
 		switch(playerChoice) {
 			case 1:
-				
+				Building.buildingMenu();
 				break;
 			case 2:
 				break;
@@ -25,21 +27,6 @@ public class SettlementManagement {
 			default:
 				break;
 		}	
-	}
-	
-	public static int SMmenuChoice() {
-		int choice;
-		System.out.print("\n> ");
-		choice = input.nextInt();
-		input.nextLine();
-		if(!(choice >= 1 && choice <= 3)) { //Amount of settlement Choices
-			do {
-				System.out.print("Please Enter A Valid Choice: ");
-				choice = input.nextInt();
-				input.nextLine();
-			}while(!(choice >= 1 && choice <= 3));
-		}	
-		return choice;
 	}
 
 }

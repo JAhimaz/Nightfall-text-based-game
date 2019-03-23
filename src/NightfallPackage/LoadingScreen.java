@@ -44,14 +44,13 @@ public class LoadingScreen {
 				"Killing Off The Remaining Humans...",
 				"Blowing Up Dinosaurs...",
 				"Sending The Final Memes...",
-				"Deleting Your Harddrive... Just kidding",
 				"Wasting the land...",
 		};
 		
 		shuffle(loadingLines);
 		
 		System.out.println("");
-		for(int i = 0; i <= 8; i++) {
+		for(int i = 0; i <= 6; i++) {
 			System.out.println(loadingLines[i]);
 			int timer = (rand.nextInt((1200-200) + 1500) + 1);
 			Thread.sleep(timer);
