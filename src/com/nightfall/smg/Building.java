@@ -1,9 +1,11 @@
-package NightfallPackage;
+package com.nightfall.smg;
 
 import java.util.Random;
 import java.util.Scanner;
 
-import InputHandling.InputHandling;
+import com.nightfall.ioh.InputHandling;
+import com.nightfall.main.MainGame;
+import com.nightfall.settlement.SettlementManagement;
 
 public class Building {
 	
@@ -11,7 +13,7 @@ public class Building {
 	static Random rand = new Random();
 	static Scanner input = new Scanner(System.in);
 	
-	public static void buildingMenu() throws InterruptedException{
+	public static void BuildingMenu() throws InterruptedException{
 		int playerChoice;
 		
 		System.out.println("\n");
@@ -26,7 +28,7 @@ public class Building {
 		System.out.println("1) Build");
 		System.out.println("2) Back");
 		
-		playerChoice = BuildingMenuChoice();
+		playerChoice = InputHandling.Integer(1, 2);
 		switch(playerChoice) {
 			case 1:
 				CreateBuilding();
@@ -37,21 +39,6 @@ public class Building {
 			default:
 				break;
 		}	
-	}
-	
-	private static int BuildingMenuChoice() {
-		int choice;
-		System.out.print("\n> ");
-		choice = input.nextInt();
-		input.nextLine();
-		if(!(choice >= 1 && choice <= 2)) { 
-			do {
-				System.out.print("Please Enter A Valid Choice: ");
-				choice = input.nextInt();
-				input.nextLine();
-			}while(!(choice >= 1 && choice <= 2));
-		}	
-		return choice;
 	}
 	
 	private static void CreateBuilding() throws InterruptedException {
@@ -69,16 +56,22 @@ public class Building {
 		playerChoice = InputHandling.Integer(1, 5);
 		switch(playerChoice) {
 			case 1:
+				MainGame.settlementStats.setDayOverStatus(true);
 				break;
 			case 2:
+				MainGame.settlementStats.setDayOverStatus(true);
 				break;
 			case 3:
+				MainGame.settlementStats.setDayOverStatus(true);
 				break;
 			case 4:
+				MainGame.settlementStats.setDayOverStatus(true);
 				break;
 			case 5:
+				MainGame.settlementStats.setDayOverStatus(true);
 				break;
 			default:
+				MainGame.settlementStats.setDayOverStatus(true);
 				break;
 		}	
 	}

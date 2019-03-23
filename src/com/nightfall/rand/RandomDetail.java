@@ -1,4 +1,4 @@
-package RandomDetailGenerator;
+package com.nightfall.rand;
 
 import java.util.Random;
 

@@ -1,7 +1,8 @@
-package NightfallPackage;
+package com.nightfall.npc;
 
 import java.util.Random;
-import RandomDetailGenerator.RandomDetail;
+
+import com.nightfall.rand.RandomDetail;
 
 public class Settler {
 	static Random rand = new Random();

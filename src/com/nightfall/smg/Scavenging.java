@@ -1,9 +1,11 @@
-package NightfallPackage;
+package com.nightfall.smg;
 
 import java.util.Random;
 import java.util.Scanner;
 
-import InputHandling.InputHandling;
+import com.nightfall.ioh.InputHandling;
+import com.nightfall.main.MainGame;
+import com.nightfall.npc.Settler;
 
 public class Scavenging {
 	static Random rand = new Random();

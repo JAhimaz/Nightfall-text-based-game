@@ -1,10 +1,17 @@
-package NightfallPackage;
+package com.nightfall.main;
 
 import java.util.Random;
 import java.lang.Math; 
 import java.util.Scanner;
 
-import InputHandling.InputHandling;
+import com.nightfall.ioh.InputHandling;
+import com.nightfall.misc.Misc;
+import com.nightfall.npc.Settler;
+import com.nightfall.settlement.PlayerStats;
+import com.nightfall.settlement.SettlementManagement;
+import com.nightfall.settlement.SettlementStats;
+import com.nightfall.smg.RandomEvents;
+import com.nightfall.smg.Scavenging;
 
 import java.util.ArrayList;
 

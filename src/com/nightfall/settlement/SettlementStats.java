@@ -1,4 +1,4 @@
-package NightfallPackage;
+package com.nightfall.settlement;
 
 public class SettlementStats {
 	//CURRENTPULLEDSTATS
