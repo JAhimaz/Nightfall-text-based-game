@@ -3,6 +3,8 @@ package NightfallPackage;
 import java.util.Random;
 import java.util.Scanner;
 
+import InputHandling.InputHandling;
+
 public class Scavenging {
 	static Random rand = new Random();
 	static Scanner input = new Scanner(System.in);
@@ -41,7 +43,7 @@ public class Scavenging {
 				for(Settler settler : MainGame.settlers) {
 					if(settler.getAge() >= 20 && settler.getAge() <= 60) {
 						System.out.println(id + ") Name:  " + settler.getFirstName() + " " + settler.getLastName());
-						System.out.println("  Health: " + settler.getHealth());
+						System.out.println("   Health: " + settler.getHealth());
 						//Could Print Out Perks When Done
 					}
 					++id;
@@ -54,7 +56,7 @@ public class Scavenging {
 					id = 1;
 					for(Settler scavenger : MainGame.scavengers) {					
 						System.out.println(id + ") Name:  " + scavenger.getFirstName() + " " + scavenger.getLastName());
-						System.out.println("  Health: " + scavenger.getHealth());
+						System.out.println("   Health: " + scavenger.getHealth());
 						//Could Print Out Perks When Done
 						++id;
 					}
@@ -62,35 +64,31 @@ public class Scavenging {
 				System.out.println("============================================");
 				
 				System.out.println("\n< Choose between (1 -> " + MainGame.settlers.size() + ")");
-				System.out.print("> ");
-				choice = input.nextInt();
-				input.nextLine();
+				choice = InputHandling.ScavengerHandling(-1, MainGame.settlers.size());
+				
 				if(choice == -1) {
+					int length = MainGame.scavengers.size();
+					for(int i = 0; i < length; i++) {
+						Settler removed = MainGame.scavengers.remove(0);
+						removed.setScavenging(false);
+						MainGame.settlers.add(removed);
+					}
+					
 					System.out.println("\n< Returning To Daily Choice!");
 					successfulChoice = true;
 					break;
-				}if(choice == 0) {
+				}if(choice == 0 && MainGame.scavengers.size() != 0) {
 					break;
-				}if(!(choice >= 0 && choice <= MainGame.settlers.size())) {
-					do {
-						System.out.println("Please Enter A Valid Choice!");
-						System.out.print("> ");
-						choice = input.nextInt();
-						input.nextLine();
-					}while(!(choice >= 0 && choice <= MainGame.settlers.size()));
-					
-					System.out.println("\n< " + MainGame.settlers.get(choice-1).getFirstName() + " Has Been Set As A Scavenger!");
-					
-					Settler removed = MainGame.settlers.remove(choice-1);
-					MainGame.scavengers.add(removed);		
-					
-				}else{
-					System.out.println("\n< " + MainGame.settlers.get(choice-1).getFirstName() + " Has Been Set As A Scavenger!");
-					
-					Settler removed = MainGame.settlers.remove(choice-1);
-					MainGame.scavengers.add(removed);
+				}if(choice == 0){
+					System.out.println("\nYou Cant Send Nobody!");
+					Thread.sleep(1000);
+					SendScavengers();
 				}
-
+				
+				System.out.println("\n< " + MainGame.settlers.get(choice-1).getFirstName() + " Has Been Set As A Scavenger!");
+				
+				Settler removed = MainGame.settlers.remove(choice-1);
+				MainGame.scavengers.add(removed);
 			}while(choice != 0 || limit == true);
 			
 			if(successfulChoice) {
@@ -103,7 +101,7 @@ public class Scavenging {
 			int id = 1;
 			for(Settler scavenger : MainGame.scavengers) {					
 				System.out.println(id + ") Name:  " + scavenger.getFirstName() + " " + scavenger.getLastName());
-				System.out.println("  Health: " + scavenger.getHealth());
+				System.out.println("   Health: " + scavenger.getHealth());
 				scavenger.setScavenging(true);
 				//Could Print Out Perks When Done
 				++id;

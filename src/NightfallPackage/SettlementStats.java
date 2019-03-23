@@ -72,6 +72,7 @@ public class SettlementStats {
 	public boolean hasBunker() {
 		return hasBunker;
 	}
+	
 	public void setHasBunker(boolean hasBunker) {
 		this.hasBunker = hasBunker;
 	}
@@ -98,5 +99,14 @@ public class SettlementStats {
 	}
 	public void setHasWaterPump(boolean hasWaterPump) {
 		this.hasWaterPump = hasWaterPump;
+	}
+	
+	//
+	
+	public String built(boolean exists) {
+		if(exists)
+			return "Built";
+		
+		return "Unbuilt";
 	}
 }
