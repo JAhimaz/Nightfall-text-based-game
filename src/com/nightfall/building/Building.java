@@ -7,7 +7,6 @@ import com.nightfall.ioh.InputHandling;
 import com.nightfall.main.MainGame;
 import com.nightfall.misc.Misc;
 import com.nightfall.npc.Settler;
-import com.nightfall.settlement.PlayerStats;
 import com.nightfall.settlement.SettlementManagement;
 
 public class Building {
@@ -75,15 +74,11 @@ public class Building {
 					break;
 				}
 				
-//				if(MainGame.playerStats.getMetal() == 250 &&
-//				   MainGame.playerStats.getWood() == 100 &&
-//				   MainGame.settlers.size() >= 2 &&
-//				   MainGame.settlementStats.hasForge() &&
-//				   MainGame.settlementStats.hasCrafting()) {
-				
-				if(MainGame.playerStats.getMetal() > 1 && //DEBUGGING
-				   MainGame.playerStats.getWood() > 1 && //DEBUGGING
-				   MainGame.settlers.size() >= 3) { //DEBUGGING
+				if(MainGame.playerStats.getMetal() >= 250 &&
+				   MainGame.playerStats.getWood() >= 100 &&
+				   MainGame.settlers.size() > 2 &&
+				   MainGame.settlementStats.hasForge() &&
+				   MainGame.settlementStats.hasCrafting()) {
 				
 					if(MainGame.settlers.size() <= 2) {
 						System.out.println("\n< You Need Atleast 3 Settlers To Build A Bunker (Requires 2 To Build And 1 Normal Settler)");
@@ -91,7 +86,6 @@ public class Building {
 						Misc.clearConsole();
 						CreateBuilding();
 					}else {
-						//Builds the Bunker
 						successfulChoice = ChooseBuilders(1);
 					}
 				}else {
@@ -120,48 +114,201 @@ public class Building {
 				break;
 			case 2:
 				if(MainGame.settlementStats.hasFarm() || MainGame.settlementStats.isFarmBeingBuilt()) {
-					if(MainGame.settlementStats.hasBunker()) {
+					if(MainGame.settlementStats.hasFarm()) {
 						System.out.println("\n< You Already Have A Farm!");
-					}else if(MainGame.settlementStats.isBunkerBeingBuilt()) {
+					}else if(MainGame.settlementStats.isFarmBeingBuilt()) {
 						System.out.println("\n< You Are Already Building A Farm!");
 					}
-	
+
+					Thread.sleep(1500);
+					Misc.clearConsole();
+					CreateBuilding();
+					break;
+				}
+				
+				if(MainGame.playerStats.getWood() >= 150 &&
+				   MainGame.settlers.size() > 4 &&
+				   MainGame.settlementStats.hasCrafting()) {
+				
+					if(MainGame.settlers.size() <= 4) {
+						System.out.println("\n< You Need Atleast 4 Settlers To Build A Farm (Requires 3 To Build And 1 Normal Settler)");
+						Thread.sleep(1500);
+						Misc.clearConsole();
+						CreateBuilding();
+					}else {
+						successfulChoice = ChooseBuilders(2);
+					}
+				}else {
+					System.out.println("\n< You Don't Have The Required Resources\n");
+					if(MainGame.playerStats.getMetal() <= 1) {
+						System.out.println("> Not Enough Metal!");
+					}
+					if(MainGame.playerStats.getWood() <= 1) {
+						System.out.println("> Not Enough Wood!");
+					}
+					if(MainGame.settlers.size() <= 2) {
+						System.out.println("> Not Enough Settlers!\n");
+					}
+					//Tell Them Which Resources They Dont Have
 					Thread.sleep(1500);
 					Misc.clearConsole();
 					CreateBuilding();
 				}
 				
-				if(MainGame.playerStats.getWood() == 150 &&
-				   MainGame.settlers.size() >= 4 &&
+				if(successfulChoice) {
+					MainGame.settlementStats.setDayOverStatus(true);
+				}else if(!successfulChoice) {
+					BuildingMenu();
+				}
+				break;
+			case 3:
+				if(MainGame.settlementStats.hasForge() || MainGame.settlementStats.isForgeBeingBuilt()) {
+					if(MainGame.settlementStats.hasForge()) {
+						System.out.println("\n< You Already Have A Forge!");
+					}else if(MainGame.settlementStats.isForgeBeingBuilt()) {
+						System.out.println("\n< You Are Already Building A Forge!");
+					}
+
+					Thread.sleep(1500);
+					Misc.clearConsole();
+					CreateBuilding();
+					break;
+				}
+				
+				if(MainGame.playerStats.getMetal() >= 100 &&
+				   MainGame.settlers.size() > 2 &&
 				   MainGame.settlementStats.hasCrafting()) {
-							
-					if(MainGame.settlers.size() <= 3) {
-						System.out.println("\n< You Need Atleast 4 Settlers To Build A Farm (Requires 3 To Build And 1 Normal Settler)");
+				
+					if(MainGame.settlers.size() <= 2) {
+						System.out.println("\n< You Need Atleast 2 Settlers To Build A Farm (Requires 1 To Build And 1 Normal Settler)");
 						Thread.sleep(1500);
+						Misc.clearConsole();
 						CreateBuilding();
 					}else {
-						//Builds the Bunker
-						ChooseBuilders(2);
+						successfulChoice = ChooseBuilders(3);
 					}
 				}else {
-					System.out.println("\n< You Don't Have The Required Resources");
-
+					System.out.println("\n< You Don't Have The Required Resources\n");
+					if(MainGame.playerStats.getMetal() <= 1) {
+						System.out.println("> Not Enough Metal!");
+					}
+					if(MainGame.playerStats.getWood() <= 1) {
+						System.out.println("> Not Enough Wood!");
+					}
+					if(MainGame.settlers.size() <= 2) {
+						System.out.println("> Not Enough Settlers!\n");
+					}
 					//Tell Them Which Resources They Dont Have
 					Thread.sleep(1500);
 					Misc.clearConsole();
 					CreateBuilding();
-				}			
+				}
 				
-				MainGame.settlementStats.setDayOverStatus(true);
-				break;
-			case 3:
-				MainGame.settlementStats.setDayOverStatus(true);
+				if(successfulChoice) {
+					MainGame.settlementStats.setDayOverStatus(true);
+				}else if(!successfulChoice) {
+					BuildingMenu();
+				}
+
 				break;
 			case 4:
-				MainGame.settlementStats.setDayOverStatus(true);
+				if(MainGame.settlementStats.hasCrafting() || MainGame.settlementStats.isCraftingBeingBuilt()) {
+					if(MainGame.settlementStats.hasCrafting()) {
+						System.out.println("\n< You Already Have A Crafting Building!");
+					}else if(MainGame.settlementStats.isCraftingBeingBuilt()) {
+						System.out.println("\n< You Are Already Building A Crafting Building!");
+					}
+
+					Thread.sleep(1500);
+					Misc.clearConsole();
+					CreateBuilding();
+					break;
+				}
+				
+				if(MainGame.playerStats.getWood() >= 50 &&
+				   MainGame.settlers.size() > 2) {
+				
+					if(MainGame.settlers.size() <= 2) {
+						System.out.println("\n< You Need Atleast 2 Settlers To Build A Crafting Building (Requires 1 To Build And 1 Normal Settler)");
+						Thread.sleep(1500);
+						Misc.clearConsole();
+						CreateBuilding();
+					}else {
+						successfulChoice = ChooseBuilders(4);
+					}
+				}else {
+					System.out.println("\n< You Don't Have The Required Resources\n");
+					if(MainGame.playerStats.getMetal() <= 1) {
+						System.out.println("> Not Enough Metal!");
+					}
+					if(MainGame.playerStats.getWood() <= 1) {
+						System.out.println("> Not Enough Wood!");
+					}
+					if(MainGame.settlers.size() <= 2) {
+						System.out.println("> Not Enough Settlers!\n");
+					}
+					//Tell Them Which Resources They Dont Have
+					Thread.sleep(1500);
+					Misc.clearConsole();
+					CreateBuilding();
+				}
+				
+				if(successfulChoice) {
+					MainGame.settlementStats.setDayOverStatus(true);
+				}else if(!successfulChoice) {
+					BuildingMenu();
+				}
+
 				break;
 			case 5:
-				MainGame.settlementStats.setDayOverStatus(true);
+				if(MainGame.settlementStats.hasWaterPump() || MainGame.settlementStats.isWaterPumpBeingBuilt()) {
+					if(MainGame.settlementStats.hasWaterPump()) {
+						System.out.println("\n< You Already Have A Water Pump!");
+					}else if(MainGame.settlementStats.isWaterPumpBeingBuilt()) {
+						System.out.println("\n< You Are Already Building A Water Pump!");
+					}
+
+					Thread.sleep(1500);
+					Misc.clearConsole();
+					CreateBuilding();
+					break;
+				}
+				
+				if(MainGame.playerStats.getMetal() >= 30 &&
+				   MainGame.settlers.size() > 2 &&
+				   MainGame.settlementStats.hasCrafting()) {
+				
+					if(MainGame.settlers.size() <= 2) {
+						System.out.println("\n< You Need Atleast 2 Settlers To Build A Water Pump (Requires 1 To Build And 1 Normal Settler)");
+						Thread.sleep(1500);
+						Misc.clearConsole();
+						CreateBuilding();
+					}else {
+						successfulChoice = ChooseBuilders(5);
+					}
+				}else {
+					System.out.println("\n< You Don't Have The Required Resources\n");
+					if(MainGame.playerStats.getMetal() <= 1) {
+						System.out.println("> Not Enough Metal!");
+					}
+					if(MainGame.playerStats.getWood() <= 1) {
+						System.out.println("> Not Enough Wood!");
+					}
+					if(MainGame.settlers.size() <= 2) {
+						System.out.println("> Not Enough Settlers!\n");
+					}
+					//Tell Them Which Resources They Dont Have
+					Thread.sleep(1500);
+					Misc.clearConsole();
+					CreateBuilding();
+				}
+				
+				if(successfulChoice) {
+					MainGame.settlementStats.setDayOverStatus(true);
+				}else if(!successfulChoice) {
+					BuildingMenu();
+				}
+
 				break;
 			case 6:
 				BuildingMenu();
@@ -235,7 +382,6 @@ public class Building {
 			
 			if(choice == -1) {
 				
-				//DOESNT RETURN ALL PEOPLE
 				while(MainGame.builders.size() != 0) {
 					for(int i = 0; i < MainGame.builders.size(); i++) {
 						if(MainGame.builders.get(i).getBuildId() == buildId) {
@@ -275,7 +421,8 @@ public class Building {
 			System.out.println("\n============================================");		
 			Thread.sleep(1000);
 			
-			Build building = createBuildObject(buildId, buildName);		
+			Build building = createBuildObject(buildId, buildName);
+			removeResources(buildId);
 			
 			System.out.println("\n< Your " + buildName + " Will Be Built In " + building.getEndBuild() + " Days");
 			Thread.sleep(1000);	
@@ -285,6 +432,21 @@ public class Building {
 		return false;
 
 		
+	}
+	
+	public static void removeResources(int buildId) {
+		if(buildId == 1) {
+		    MainGame.playerStats.setMetal(MainGame.playerStats.getMetal() - 250);
+		    MainGame.playerStats.setWood(MainGame.playerStats.getWood() - 100);
+		}if(buildId == 2) {
+		    MainGame.playerStats.setWood(MainGame.playerStats.getWood() - 150);
+		}if(buildId == 3) {
+			MainGame.playerStats.setMetal(MainGame.playerStats.getMetal() - 100);
+		}if(buildId == 4) {
+		    MainGame.playerStats.setWood(MainGame.playerStats.getWood() - 50);
+		}if(buildId == 5) {
+			MainGame.playerStats.setMetal(MainGame.playerStats.getMetal() - 30);
+		}
 	}
 	
 	public static void ReturnBuilders(int buildId) {
@@ -310,7 +472,6 @@ public class Building {
 		    MainGame.settlementStats.setHasWaterPump(true);
 		}
 		
-		//DOESNT RETURN ALL PEOPLE
 		while(MainGame.builders.size() != 0) {
 			for(int i = 0; i < MainGame.builders.size(); i++) {
 				if(MainGame.builders.get(i).getBuildId() == buildId) {
@@ -321,7 +482,6 @@ public class Building {
 				}				
 			}
 		}
-		//DOESNT RETURN ALL PEOPLE
 		
 		for(int i = 0; i < SettlementManagement.builds.size(); i++) {
 			if(SettlementManagement.builds.get(i).getBuildId() == buildId) {
@@ -339,7 +499,7 @@ public class Building {
 	    building.setBuildDays(0);
 
 		if(buildId == 1) {
-		    building.setEndBuild(1);
+		    building.setEndBuild(3);
 			MainGame.settlementStats.setBunkerBeingBuilt(true);
 		}if(buildId == 2) {
 		    building.setEndBuild(2);
