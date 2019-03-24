@@ -36,7 +36,7 @@ public class BuildingCalls {
 				}else if(MainGame.settlementStats.isFarmBeingBuilt()) {
 					building.incrementBuildDay();
 					if(building.getBuildDays() > 0) {
-						System.out.println("\n< Your + " + building.getBuildName() + " Will Be Complete In " + (((building.getEndBuild() - building.getBuildDays())) + 1) + " Days");
+						System.out.println("\n< Your " + building.getBuildName() + " Will Be Complete In " + (((building.getEndBuild() - building.getBuildDays())) + 1) + " Days");
 					}
 				}
 			}
@@ -49,7 +49,7 @@ public class BuildingCalls {
 				}else if(MainGame.settlementStats.isForgeBeingBuilt()) {
 					building.incrementBuildDay();
 					if(building.getBuildDays() > 0) {
-						System.out.println("\n< Your + " + building.getBuildName() + " Will Be Complete In " + (((building.getEndBuild() - building.getBuildDays())) + 1) + " Days");
+						System.out.println("\n< Your " + building.getBuildName() + " Will Be Complete In " + (((building.getEndBuild() - building.getBuildDays())) + 1) + " Days");
 					}
 				}
 			}
@@ -62,7 +62,7 @@ public class BuildingCalls {
 				}else if(MainGame.settlementStats.isCraftingBeingBuilt()) {
 					building.incrementBuildDay();
 					if(building.getBuildDays() > 0) {
-						System.out.println("\n< Your + " + building.getBuildName() + " Will Be Complete In " + (((building.getEndBuild() - building.getBuildDays())) + 1) + " Days");
+						System.out.println("\n< Your " + building.getBuildName() + " Will Be Complete In " + (((building.getEndBuild() - building.getBuildDays())) + 1) + " Days");
 					}
 				}
 			}
@@ -75,7 +75,7 @@ public class BuildingCalls {
 				}else if(MainGame.settlementStats.isWaterPumpBeingBuilt()) {
 					building.incrementBuildDay();
 					if(building.getBuildDays() > 0) {
-						System.out.println("\n< Your + " + building.getBuildName() + " Will Be Complete In " + (((building.getEndBuild() - building.getBuildDays())) + 1) + " Days");
+						System.out.println("\n< Your " + building.getBuildName() + " Will Be Complete In " + (((building.getEndBuild() - building.getBuildDays())) + 1) + " Days");
 					}
 				}
 			}

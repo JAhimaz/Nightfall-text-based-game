@@ -135,8 +135,8 @@ public class Scavenging {
 		MainGame.playerStats.setMetal(MainGame.playerStats.getMetal() + metalFound); MainGame.playerStats.setWood(MainGame.playerStats.getWood() + woodFound); 
 		MainGame.playerStats.setFood(MainGame.playerStats.getFood() + foodFound); MainGame.playerStats.setWater(MainGame.playerStats.getWater() + waterFound);
 		int length = MainGame.scavengers.size();
-		for(int i = 0; i <= length; i++) {
-			MainGame.scavengers.get(i).setHasGun(false);
+		for(int i = 0; i < length; i++) {
+			MainGame.scavengers.get(0).setHasGun(false);
 			MainGame.playerStats.setWeapons(MainGame.playerStats.getWeapons() + 1);
 		}
 		for(int i = 0; i < length; i++) {
