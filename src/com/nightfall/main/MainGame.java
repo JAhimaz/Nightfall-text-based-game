@@ -252,17 +252,11 @@ public class MainGame {
 		
 		settlementStats.setDefense(50); 
 		
-		playerStats.setMetal(999999); 
-		playerStats.setWood(999999); 
-		playerStats.setWeapons(999999); 
-		playerStats.setFood(999999); 
-		playerStats.setWater(999999); 
-		
-//		playerStats.setMetal(rand.nextInt((40 - 20) + 1) + 20); 
-//		playerStats.setWood(rand.nextInt((40 - 20) + 1) + 20); 
-//		playerStats.setWeapons(rand.nextInt((7 - 4) + 1) + 4); 
-//		playerStats.setFood(rand.nextInt((60 - 40) + 1) + 20);
-//		playerStats.setWater(rand.nextInt((60 - 40) + 1) + 20);
+		playerStats.setMetal(rand.nextInt((40 - 20) + 1) + 20); 
+		playerStats.setWood(rand.nextInt((40 - 20) + 1) + 20); 
+		playerStats.setWeapons(rand.nextInt((7 - 4) + 1) + 4); 
+		playerStats.setFood(rand.nextInt((60 - 40) + 1) + 20);
+		playerStats.setWater(rand.nextInt((60 - 40) + 1) + 20);
 	}
 	
 }
