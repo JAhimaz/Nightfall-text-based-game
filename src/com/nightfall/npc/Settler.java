@@ -16,6 +16,7 @@ public class Settler {
 	//Interchangeable
 	private int age;
 	private int health;
+	private int buildId = 0; //Not Currently Building
 	
 	private boolean isScavenging, isBuilding, isHungry, hasGun;
 	
@@ -88,6 +89,14 @@ public class Settler {
 
 	public void setHasGun(boolean hasGun) {
 		this.hasGun = hasGun;
+	}
+
+	public int getBuildId() {
+		return buildId;
+	}
+
+	public void setBuildId(int buildId) {
+		this.buildId = buildId;
 	}
 
 

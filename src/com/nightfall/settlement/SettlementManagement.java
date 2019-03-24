@@ -1,10 +1,12 @@
 package com.nightfall.settlement;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.nightfall.building.Build;
+import com.nightfall.building.Building;
 import com.nightfall.ioh.InputHandling;
-import com.nightfall.smg.Building;
 import com.nightfall.smg.Farming;
 
 public class SettlementManagement {
@@ -12,6 +14,8 @@ public class SettlementManagement {
 	//Basic Java Components
 	static Random rand = new Random();
 	static Scanner input = new Scanner(System.in);
+	
+	public static ArrayList<Build> builds = new ArrayList<Build>();
 	
 	public static void SMmenu() throws InterruptedException {
 		int playerChoice;
