@@ -7,7 +7,6 @@ import com.nightfall.ioh.InputHandling;
 import com.nightfall.main.MainGame;
 import com.nightfall.misc.Misc;
 import com.nightfall.npc.Settler;
-import com.nightfall.settlement.PlayerStats;
 import com.nightfall.settlement.SettlementManagement;
 
 public class Building {

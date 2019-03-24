@@ -1,16 +1,15 @@
 package com.nightfall.building;
 
 import com.nightfall.main.MainGame;
-import com.nightfall.npc.Settler;
 import com.nightfall.settlement.SettlementManagement;
 
 public class BuildingCalls {
 	
 	public static void BuildingCall() throws InterruptedException{
 		
-		for (Settler builders : MainGame.builders) {
-
-		}
+//		for (Settler builders : MainGame.builders) {
+//
+//		}
 	
 		for (int i = 0; i < SettlementManagement.builds.size(); i++) {
 			Build building = SettlementManagement.builds.get(i);
