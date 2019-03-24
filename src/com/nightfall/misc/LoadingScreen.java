@@ -1,8 +1,10 @@
-package NightfallPackage;
+package com.nightfall.misc;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.nightfall.main.MainGame;
 
 public class LoadingScreen {
 	

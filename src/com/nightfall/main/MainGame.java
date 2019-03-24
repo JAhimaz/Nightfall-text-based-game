@@ -1,10 +1,19 @@
-package NightfallPackage;
+package com.nightfall.main;
 
 import java.util.Random;
 import java.lang.Math; 
 import java.util.Scanner;
 
-import InputHandling.InputHandling;
+import com.nightfall.building.BuildingCalls;
+import com.nightfall.ioh.InputHandling;
+import com.nightfall.misc.Misc;
+import com.nightfall.npc.Settler;
+import com.nightfall.scavenging.Scavenging;
+import com.nightfall.scavenging.ScavengingCalls;
+import com.nightfall.settlement.PlayerStats;
+import com.nightfall.settlement.SettlementManagement;
+import com.nightfall.settlement.SettlementStats;
+import com.nightfall.smg.RandomEvents;
 
 import java.util.ArrayList;
 
@@ -26,8 +35,8 @@ public class MainGame {
 		DefaultStats();
 		//Do While Loop To End Game
 		for(settlementStats.setDay(1); settlementStats.getDay() >= 1 && !playerStats.isPlayerDead(); settlementStats.incrementDay()) {	
-			Scavenging.ScavengingCall();
-			CheckFoodAndWater();
+			DayBeginCalls();
+			
 			if(playerStats.isPlayerDead())
 				break;
 			DayStartCall();
@@ -43,12 +52,14 @@ public class MainGame {
 				dailyChoice = DayChoice();
 				switch(dailyChoice) {
 					case 1:
+						Misc.clearConsole();
 						Scavenging.SendScavengers();
 						break;
 					case 2:
 						//Entering The Market
 						break;
 					case 3:
+						Misc.clearConsole();
 						SettlementManagement.SMmenu();
 						break;
 				}
@@ -56,9 +67,21 @@ public class MainGame {
 			DayEndCall();
 			System.out.println("\n== Day " + settlementStats.getDay() + " Has Come To An End ==");	
 			Thread.sleep(2000);
+			Misc.clearConsole();
 		}
 		
 		System.out.println("\n\n< YOU HAVE MADE IT TO THE END GAME AFTER " + settlementStats.getDay() + " DAYS SURVIVED");
+	}
+	
+	public static void DayBeginCalls() throws InterruptedException{
+		if(settlementStats.getDay() > 1) {
+			System.out.println("\n========= DAILY DETAILS =========");
+		}
+
+		ScavengingCalls.ScavengingCall();
+		BuildingCalls.BuildingCall();
+		CheckFoodAndWater();
+		Thread.sleep(1500);
 	}
 	
 	public static void DayStartCall() throws InterruptedException {
@@ -69,12 +92,14 @@ public class MainGame {
 		Thread.sleep(1000);
 		System.out.println("SETTLEMENT DETAILS:");
 		System.out.println("Name: " + settlementStats.getSettlementName());
-		if(settlementStats.isScavenging()) {
-			System.out.print("Settlers: " + settlers.size() + " (" + scavengers.size() + ") Scavenging\n");
-		}else {
-			System.out.println("Settlers: " + settlers.size());
-		}
-		System.out.println("Defense: " + settlementStats.getDefense());
+		System.out.println("Defense: " + settlementStats.getDefense() + "\n");
+		
+		System.out.println("=================================");
+		System.out.println("           SETTLERS");
+		System.out.println("Idle Settlers: " + settlers.size());
+		System.out.println("Scavengers: " + scavengers.size()); //FIX
+		System.out.println("Builders: " + builders.size());
+
 		Thread.sleep(1000);
 		System.out.println("\nCURRENT COMPONENTS:");
 		System.out.println("Metal: " + playerStats.getMetal());
@@ -167,6 +192,7 @@ public class MainGame {
 			return true;
 		}
 		if(choice == 4) {
+			Misc.clearConsole();
 			System.out.println("\n============================================");
 			System.out.println("\n< Current Settlers: \n");
 			for(Settler settler : settlers) {

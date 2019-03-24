@@ -1,26 +1,15 @@
-package NightfallPackage;
+package com.nightfall.scavenging;
 
 import java.util.Random;
 import java.util.Scanner;
 
-import InputHandling.InputHandling;
+import com.nightfall.ioh.InputHandling;
+import com.nightfall.main.MainGame;
+import com.nightfall.npc.Settler;
 
 public class Scavenging {
 	static Random rand = new Random();
 	static Scanner input = new Scanner(System.in);
-
-	public static void ScavengingCall() throws InterruptedException{
-		if(MainGame.settlementStats.isScavenging() && MainGame.settlementStats.getScavengingDays() == MainGame.settlementStats.getEndScavenging()) {
-			ReturnScavengers();
-			Thread.sleep(3000);
-		}
-		else if(MainGame.settlementStats.isScavenging()) {
-			MainGame.settlementStats.incrementScaveningDays();
-			if(MainGame.settlementStats.getScavengingDays() > 0) {
-				System.out.println("\n< Your Scavengers Will Return in " + (((MainGame.settlementStats.getEndScavenging() - MainGame.settlementStats.getScavengingDays())) + 1) + " Days");
-			}
-		}
-	}
 	
 	public static void SendScavengers() throws InterruptedException {
 		boolean successfulChoice = false, limit = false;
@@ -63,8 +52,8 @@ public class Scavenging {
 				}
 				System.out.println("============================================");
 				
-				System.out.println("\n< Choose between (1 -> " + MainGame.settlers.size() + ")");
-				choice = InputHandling.ScavengerHandling(-1, MainGame.settlers.size());
+				System.out.println("\n< Choose between (1 -> " + MainGame.settlers.size() + ") (-1 To Exit)");
+				choice = InputHandling.Integer(-1, MainGame.settlers.size());
 				
 				if(choice == -1) {
 					int length = MainGame.scavengers.size();

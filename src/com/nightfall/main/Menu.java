@@ -1,8 +1,10 @@
-package NightfallPackage;
+package com.nightfall.main;
 
 import java.util.Scanner;
 
-import InputHandling.InputHandling;
+import com.nightfall.ioh.InputHandling;
+import com.nightfall.misc.LoadingScreen;
+import com.nightfall.misc.Misc;
 
 public class Menu {
 	static Scanner input = new Scanner(System.in);

@@ -1,8 +1,11 @@
-package NightfallPackage;
+package com.nightfall.smg;
 
 import java.util.Random;
 import java.lang.Math; 
 import java.util.Scanner;
+
+import com.nightfall.main.MainGame;
+import com.nightfall.npc.Settler;
 
 public class RandomEvents {
 	static Random rand = new Random();
@@ -32,16 +35,7 @@ public class RandomEvents {
 			}if(event <= 40 && event > 5) {
 				System.out.println("< Event 7");
 			}if(event <= 2) { //Nuclear Bomb
-				System.out.println("< Your Settlers Gaze Upon The Horizon and Notice A Dark Egg Dropping From The Sky...");
-				Thread.sleep(1000);
-				System.out.println("< The Sound Whizzing Through The Air, Its A Nuclear Bomb");
-				Thread.sleep(1000);
-				System.out.println("< At This Point Theres No Hope, Your Settlement is Within the Blast Radius");
-				Thread.sleep(1000);
-				System.out.println("< Your Settlers Say Their Final GoodBye As The Explosion Lights Up The Sky");
-				Thread.sleep(1000);
-				System.out.println("< The Blistering Impact Of The Sound Levels Your Whole Settlement.");
-				MainGame.playerStats.setPlayerStatus(true);
+				NuclearEvent();
 			}
 			System.out.println("=====================================\n");
 			Thread.sleep(3000);
@@ -61,6 +55,34 @@ public class RandomEvents {
 				MainGame.settlers.add(newSettler);
 			}
 			System.out.println("\n< You Have Gained " + newSettlers + " New Settlers!");
+		}
+		
+		private static void NuclearEvent() throws InterruptedException {
+			System.out.println("< Your Settlers Gaze Upon The Horizon and Notice A Dark Egg Dropping From The Sky...");
+			Thread.sleep(1000);
+			System.out.println("< The Sound Whizzing Through The Air, Its A Nuclear Bomb");
+			Thread.sleep(1000);
+			
+			if(MainGame.settlementStats.hasBunker()) {
+				System.out.println("< You're Settlers Hastily Flee To The Bunker!");
+				Thread.sleep(1000);
+				System.out.println("< The Doors Shut Upon The Soundwave Impact...");
+				Thread.sleep(1000);
+				System.out.println("< Upon Re-Entry To The Surface World You're Settlers Find Everything Wiped Out.");
+				Thread.sleep(1000);
+				System.out.println("< All Your Settlers Have Been Affected By Radiation...");
+				Thread.sleep(1000);
+				
+				//Nuclear Wipeout, Resets All Stats To Zero, Settlers Healths Are All Divided By Half, Scavengers Are All Killed.
+				
+			}else {
+				System.out.println("< At This Point Theres No Hope, Your Settlement is Within the Blast Radius");
+				Thread.sleep(1000);
+				System.out.println("< Your Settlers Say Their Final GoodBye As The Explosion Lights Up The Sky");
+				Thread.sleep(1000);
+				System.out.println("< The Blistering Impact Of The Sound Levels Your Whole Settlement.");
+				MainGame.playerStats.setPlayerStatus(true);
+			}
 		}
 		
 		private static void RainEvent() throws InterruptedException {

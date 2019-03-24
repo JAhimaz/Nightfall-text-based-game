@@ -1,4 +1,4 @@
-package NightfallPackage;
+package com.nightfall.settlement;
 
 public class SettlementStats {
 	//CURRENTPULLEDSTATS
@@ -12,6 +12,7 @@ public class SettlementStats {
 				    dayOver = false;
 	//SETTLEMENT BUILDINGS
 	private boolean hasBunker, hasFarm, hasForge, hasCrafting, hasWaterPump;
+	private boolean bunkerBeingBuilt = false, farmBeingBuilt = false, forgeBeingBuilt = false, craftingBeingBuilt = false, waterPumpBeingBuilt = false;
 	
 	public int getDay() {
 		return day;
@@ -108,5 +109,35 @@ public class SettlementStats {
 			return "Built";
 		
 		return "Unbuilt";
+	}
+	public boolean isBunkerBeingBuilt() {
+		return bunkerBeingBuilt;
+	}
+	public void setBunkerBeingBuilt(boolean bunkerBeingBuilt) {
+		this.bunkerBeingBuilt = bunkerBeingBuilt;
+	}
+	public boolean isFarmBeingBuilt() {
+		return farmBeingBuilt;
+	}
+	public void setFarmBeingBuilt(boolean farmBeingBuilt) {
+		this.farmBeingBuilt = farmBeingBuilt;
+	}
+	public boolean isForgeBeingBuilt() {
+		return forgeBeingBuilt;
+	}
+	public void setForgeBeingBuilt(boolean forgeBeingBuilt) {
+		this.forgeBeingBuilt = forgeBeingBuilt;
+	}
+	public boolean isWaterPumpBeingBuilt() {
+		return waterPumpBeingBuilt;
+	}
+	public void setWaterPumpBeingBuilt(boolean waterPumpBeingBuilt) {
+		this.waterPumpBeingBuilt = waterPumpBeingBuilt;
+	}
+	public boolean isCraftingBeingBuilt() {
+		return craftingBeingBuilt;
+	}
+	public void setCraftingBeingBuilt(boolean craftingBeingBuilt) {
+		this.craftingBeingBuilt = craftingBeingBuilt;
 	}
 }
