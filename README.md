@@ -1,5 +1,8 @@
 # NIGHTFALL
 ## Development Build 1.0.3
+
+![Project Status](https://img.shields.io/badge/Project%20Status-Discontinued-red?style=for-the-badge&logo=github)
+
 #### About NightFall
 Nightfall takes the apocalypse survival genre back to gamings roots by using text based choices to decide the faith of the settlement with RNG being a heavy factor.
 
