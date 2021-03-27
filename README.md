@@ -6,6 +6,8 @@
 #### About NightFall
 Nightfall takes the apocalypse survival genre back to gamings roots by using text based choices to decide the faith of the settlement with RNG being a heavy factor.
 
+Download the last release of the game here: https://github.com/JAhimaz/Nightfall-Game-Download
+
 #### Current Features (Development 1.0.3)
 Current complete features that are working (Does not mean finished).
 
